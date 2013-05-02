@@ -56,7 +56,6 @@ namespace FSpot.Widgets
 
 		public PhotoImageView (BrowsablePointer item) : base ()
 		{
-			Accelerometer.OrientationChanged += HandleOrientationChanged;
 			Preferences.SettingChanged += OnPreferencesChanged;
 
 			this.item = item;
@@ -219,7 +218,6 @@ namespace FSpot.Widgets
 
 			Gdk.Pixbuf prev = this.Pixbuf;
 			this.Pixbuf = loader.Pixbuf;
-			PixbufOrientation = Accelerometer.GetViewOrientation (loader.PixbufOrientation);
 			if (prev != null)
 				prev.Dispose ();
 
@@ -264,9 +262,7 @@ namespace FSpot.Widgets
 				}
 			}
 
-			if (loader.Pixbuf != null) //FIXME: this test in case the photo was loaded with the direct loader
-				PixbufOrientation = Accelerometer.GetViewOrientation (loader.PixbufOrientation);
-			else
+			if (loader.Pixbuf == null) //FIXME: this test in case the photo was loaded with the direct loader
 				PixbufOrientation = ImageOrientation.TopLeft;
 
 			if (Pixbuf == null)
@@ -284,11 +280,6 @@ namespace FSpot.Widgets
 		protected BrowsablePointer item;
 		protected Loupe loupe;
 		protected Loupe sharpener;
-
-		void HandleOrientationChanged (object sender, EventArgs e)
-		{
-			Reload ();
-		}
 
 		bool progressive_display = true;
 		bool ShowProgress {
