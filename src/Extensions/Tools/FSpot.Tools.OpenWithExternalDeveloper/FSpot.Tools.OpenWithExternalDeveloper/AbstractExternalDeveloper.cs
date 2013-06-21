@@ -54,7 +54,7 @@ namespace FSpot.Tools.OpenWithExternalDeveloper
 	/// to the derived classes' implamentation of CallExternalDeveloper.
 	/// Includes a file watcher to update the Photo with a new version when changes are registered.
 	/// </summary>
-	public abstract class AbstractOpenWithExternalDeveloper
+	public abstract class AbstractExternalDeveloper
 	{
 		/// Simple class to pass around and store development parameters
 		/// In the future might include JPEG parameters (e.g. quality)

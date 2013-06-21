@@ -30,38 +30,41 @@ using FSpot.Extensions;
 
 namespace FSpot.Tools.OpenWithExternalDeveloper
 {
-	public class OpenWithExternalDeveloperCommand : ICommand
+	public class ExternalDeveloperFactory
 	{
 		public const string PREFERENCES_EXTENSION =
-		Preferences.APP_FSPOT + "extension/openwithexternaldeveloper/";
+			Preferences.APP_FSPOT + "extension/openwithexternaldeveloper/";
 		public const string DEVELOPER_KEY = PREFERENCES_EXTENSION + "developer";
 
+		public static void SetPreferredDeveloper(string name)
+		{
+			Preferences.Set (ExternalDeveloperFactory.DEVELOPER_KEY, name);
+		}
+
+		public static AbstractExternalDeveloper Get()
+		{
+			switch (Preferences.Get<string>(DEVELOPER_KEY))
+			{
+				default:
+					return new UFRaw ();
+			}
+		}
+	}
+
+	public class ExternalDeveloperCommand : ICommand
+	{
 		public void Run (object o, EventArgs e)
 		{
 			foreach (Photo p in App.Instance.Organizer.SelectedPhotos ())
 				try
 				{
-					GetHandler().Run(o, e, p);
+					ExternalDeveloperFactory.Get().Run(o, e, p);
 				}
 				catch (OperationCanceledException)
 				{
 					return;
 				}
 		}
-
-		protected AbstractOpenWithExternalDeveloper GetHandler()
-		{
-			if (handler == null)
-			switch (Preferences.Get<string>(DEVELOPER_KEY))
-			{
-				default:
-					handler = new OpenWithUFRaw ();
-				break;
-			}
-			return handler;
-		}
-
-		private AbstractOpenWithExternalDeveloper handler;
     	}
 
 	public class ConfigureExternalDeveloperCommand : ICommand

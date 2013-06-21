@@ -38,8 +38,8 @@ namespace FSpot.Tools.OpenWithExternalDeveloper
 
 		protected void OnOkClicked (object sender, EventArgs e)
 		{
-			Preferences.Set (OpenWithExternalDeveloperCommand.DEVELOPER_KEY, this.developer.ActiveText);
-			this.Hide ();
+			ExternalDeveloperFactory.SetPreferredDeveloper (this.developer.ActiveText);
+			this.Destroy ();
 		}
 	}
 }

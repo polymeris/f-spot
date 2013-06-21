@@ -54,11 +54,11 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="FSpot.Tools.OpenWithExternalDeveloper\OpenWithExternalDeveloper.cs" />
-    <Compile Include="FSpot.Tools.OpenWithExternalDeveloper\AbstractOpenWithExternalDeveloper.cs" />
-    <Compile Include="FSpot.Tools.OpenWithExternalDeveloper\OpenWithUFRaw.cs" />
     <Compile Include="gtk-gui\generated.cs" />
     <Compile Include="FSpot.Tools.OpenWithExternalDeveloper\ExternalDeveloperConfigurationDialog.cs" />
     <Compile Include="gtk-gui\FSpot.Tools.OpenWithExternalDeveloper.ExternalDeveloperConfigurationDialog.cs" />
+    <Compile Include="FSpot.Tools.OpenWithExternalDeveloper\AbstractExternalDeveloper.cs" />
+    <Compile Include="FSpot.Tools.OpenWithExternalDeveloper\UFRaw.cs" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\..\..\Core\FSpot.Core\FSpot.Core.csproj">

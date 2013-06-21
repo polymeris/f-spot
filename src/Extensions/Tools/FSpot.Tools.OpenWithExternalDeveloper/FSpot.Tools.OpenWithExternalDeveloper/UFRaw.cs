@@ -41,7 +41,7 @@ using Mono.Unix;
 
 namespace FSpot.Tools.OpenWithExternalDeveloper
 {
-	public class OpenWithUFRaw : AbstractOpenWithExternalDeveloper
+	public class UFRaw : AbstractExternalDeveloper
 	{
 		protected override void CallExternalDeveloper (Development d)
 		{
