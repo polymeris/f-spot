@@ -1,0 +1,33 @@
+<Addin namespace="FSpot"
+    id="OpenWithExternalDeveloper"
+    version="0.1"
+    compatVersion="0.1"
+    name="OpenWithExternalDeveloper"
+    description=
+        "Open the RAW photo in an external developer, then store the output as a
+new version of the photo"
+    author="Camilo Polymeris"
+    url="http://f-spot.org/Extensions"
+    category="Tools"
+    defaultEnabled="true">
+    <Dependencies>
+        <Addin id="Core" version="0.8"/>
+    </Dependencies>
+    <Extension path="/FSpot/Menus/PhotoPopup">
+        <Command
+            id="OpenWithExternalDeveloper"
+            _label="Open with external developer..."
+            command_type=
+        "FSpot.Tools.OpenWithExternalDeveloper.OpenWithExternalDeveloperCommand"
+            insertbefore="OpenWith"
+        />
+    </Extension>
+    <Extension path = "/FSpot/Menus/Tools">
+        <Command
+            id="ConfigureExternalDeveloper"
+            _label="Configure external developer..."
+            command_type=
+       "FSpot.Tools.OpenWithExternalDeveloper.ConfigureExternalDeveloperCommand"
+        />
+    </Extension>
+</Addin>
