@@ -1,0 +1,102 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Project DefaultTargets="Build" ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProductVersion>10.0.0</ProductVersion>
+    <SchemaVersion>2.0</SchemaVersion>
+    <ProjectGuid>{AB4FAEE4-818C-4EFC-8C30-AB2233CBB86B}</ProjectGuid>
+    <OutputType>Library</OutputType>
+    <RootNamespace>FSpot.Tools.OpenWithExternalDeveloper</RootNamespace>
+    <AssemblyName>FSpot.Tools.OpenWithExternalDeveloper</AssemblyName>
+    <ReleaseVersion>0.9.0</ReleaseVersion>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <DebugSymbols>True</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>False</Optimize>
+    <OutputPath>bin\Debug</OutputPath>
+    <DefineConstants>DEBUG;</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+    <ConsolePause>False</ConsolePause>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <DebugType>none</DebugType>
+    <Optimize>True</Optimize>
+    <OutputPath>bin\Release</OutputPath>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+    <ConsolePause>False</ConsolePause>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="System" />
+    <Reference Include="Mono.Posix" />
+    <Reference Include="glib-sharp, Version=2.12.0.0, Culture=neutral, PublicKeyToken=35e10195dab3c99f">
+      <Private>False</Private>
+      <Package>glib-sharp-2.0</Package>
+    </Reference>
+    <Reference Include="gtk-sharp, Version=2.12.0.0, Culture=neutral, PublicKeyToken=35e10195dab3c99f">
+      <Package>gtk-sharp-2.0</Package>
+    </Reference>
+    <Reference Include="gdk-sharp, Version=2.12.0.0, Culture=neutral, PublicKeyToken=35e10195dab3c99f">
+      <Package>gtk-sharp-2.0</Package>
+    </Reference>
+    <Reference Include="atk-sharp, Version=2.12.0.0, Culture=neutral, PublicKeyToken=35e10195dab3c99f">
+      <Private>False</Private>
+      <Package>gtk-sharp-2.0</Package>
+    </Reference>
+  </ItemGroup>
+  <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
+  <ItemGroup>
+    <Folder Include="FSpot.Tools.OpenWithExternalDeveloper\" />
+    <Folder Include="Resources\" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\OpenWithExternalDeveloper.addin.xml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="FSpot.Tools.OpenWithExternalDeveloper\OpenWithExternalDeveloper.cs" />
+    <Compile Include="FSpot.Tools.OpenWithExternalDeveloper\AbstractOpenWithExternalDeveloper.cs" />
+    <Compile Include="FSpot.Tools.OpenWithExternalDeveloper\OpenWithUFRaw.cs" />
+    <Compile Include="gtk-gui\generated.cs" />
+    <Compile Include="FSpot.Tools.OpenWithExternalDeveloper\ExternalDeveloperConfigurationDialog.cs" />
+    <Compile Include="gtk-gui\FSpot.Tools.OpenWithExternalDeveloper.ExternalDeveloperConfigurationDialog.cs" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\..\..\Core\FSpot.Core\FSpot.Core.csproj">
+      <Project>{57EDC3BC-E777-4400-B4E7-32A5D8F15A76}</Project>
+      <Name>FSpot.Core</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\..\..\Core\FSpot.Utils\FSpot.Utils.csproj">
+      <Project>{CE160879-1BF0-4711-A18F-FDA2772900FA}</Project>
+      <Name>FSpot.Utils</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\..\..\Clients\MainApp\MainApp.csproj">
+      <Project>{27EC05FB-0223-4B26-8157-E49AF81D0007}</Project>
+      <Name>MainApp</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\..\..\..\lib\Hyena\Hyena\Hyena.csproj">
+      <Project>{95374549-9553-4C1E-9D89-667755F90E12}</Project>
+      <Name>Hyena</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\..\..\..\lib\unique-sharp\unique-sharp.csproj">
+      <Project>{5DBBB8C5-7BAF-46DA-B7D2-2486430141E2}</Project>
+      <Name>unique-sharp</Name>
+    </ProjectReference>
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="gtk-gui\gui.stetic">
+      <LogicalName>gui.stetic</LogicalName>
+    </EmbeddedResource>
+  </ItemGroup>
+  <ProjectExtensions>
+    <MonoDevelop>
+      <Properties>
+        <Policies>
+          <StandardHeader Text=" ${FileName}&#xA;&#xA; Author:&#xA;      ${AuthorName} &lt;${AuthorEmail}&gt;&#xA;&#xA; Copyright (c) ${Year} ${AuthorName}&#xA;&#xA; Permission is hereby granted, free of charge, to any person obtaining&#xA; a copy of this software and associated documentation files (the&#xA; &quot;Software&quot;), to deal in the Software without restriction, including&#xA; without limitation the rights to use, copy, modify, merge, publish,&#xA; distribute, sublicense, and/or sell copies of the Software, and to&#xA; permit persons to whom the Software is furnished to do so, subject to&#xA; the following conditions:&#xA;&#xA; The above copyright notice and this permission notice shall be&#xA; included in all copies or substantial portions of the Software.&#xA;&#xA; THE SOFTWARE IS PROVIDED AS IS, WITHOUT WARRANTY OF ANY KIND,&#xA; EXPRESS OR IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF&#xA; MERCHANTABILITY, FITNESS FOR A PARTICULAR PURPOSE AND&#xA; NONINFRINGEMENT. IN NO EVENT SHALL THE AUTHORS OR COPYRIGHT HOLDERS BE&#xA; LIABLE FOR ANY CLAIM, DAMAGES OR OTHER LIABILITY, WHETHER IN AN ACTION&#xA; OF CONTRACT, TORT OR OTHERWISE, ARISING FROM, OUT OF OR IN CONNECTION&#xA; WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.&#xA; &#xA;" IncludeInNewFiles="True" />
+        </Policies>
+      </Properties>
+    </MonoDevelop>
+  </ProjectExtensions>
+</Project>
