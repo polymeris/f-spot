@@ -10,8 +10,10 @@
     <widget-library name="../../../../../bin/f-spot.exe" />
     <widget-library name="../~/.config/f-spot/addins/FSpot.Tools.OpenWithExternalDeveloper.dll" internal="true" />
   </import>
-  <widget class="Gtk.Dialog" id="FSpot.Tools.OpenWithExternalDeveloper.ExternalDeveloperConfigurationDialog" design-size="400 300">
+  <widget class="Gtk.Dialog" id="FSpot.Tools.ExternalDeveloper.ExternalDeveloperConfigurationDialog" design-size="400 300">
     <property name="MemberName" />
+    <property name="CanDefault">True</property>
+    <property name="HasDefault">True</property>
     <property name="Title" translatable="yes">External developer configuration</property>
     <property name="WindowPosition">CenterOnParent</property>
     <property name="Buttons">2</property>
@@ -87,6 +89,7 @@
     <child internal-child="ActionArea">
       <widget class="Gtk.HButtonBox" id="actionArea">
         <property name="MemberName" />
+        <property name="Visible">False</property>
         <property name="Spacing">10</property>
         <property name="BorderWidth">5</property>
         <property name="Size">2</property>
@@ -100,6 +103,7 @@
             <property name="Type">StockItem</property>
             <property name="StockId">gtk-cancel</property>
             <property name="ResponseId">-6</property>
+            <signal name="Clicked" handler="OnCancelClicked" />
             <property name="label">gtk-cancel</property>
           </widget>
           <packing>
@@ -116,7 +120,7 @@
             <property name="Type">StockItem</property>
             <property name="StockId">gtk-ok</property>
             <property name="ResponseId">-5</property>
-            <signal name="Activated" handler="OnOkClicked" />
+            <signal name="Clicked" handler="OnOkClicked" />
             <property name="label">gtk-ok</property>
           </widget>
           <packing>

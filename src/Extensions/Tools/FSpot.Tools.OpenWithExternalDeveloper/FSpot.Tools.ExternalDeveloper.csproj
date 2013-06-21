@@ -46,19 +46,24 @@
       <Private>False</Private>
       <Package>gtk-sharp-2.0</Package>
     </Reference>
+    <Reference Include="gio-sharp, Version=2.14.0.0, Culture=neutral, PublicKeyToken=35e10195dab3c99f">
+      <Private>False</Private>
+      <Package>gio-sharp-2.0</Package>
+    </Reference>
+    <Reference Include="System.Core" />
   </ItemGroup>
   <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
   <ItemGroup>
-    <Folder Include="FSpot.Tools.OpenWithExternalDeveloper\" />
     <Folder Include="Resources\" />
+    <Folder Include="FSpot.Tools.ExternalDeveloper\" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="FSpot.Tools.OpenWithExternalDeveloper\OpenWithExternalDeveloper.cs" />
     <Compile Include="gtk-gui\generated.cs" />
-    <Compile Include="FSpot.Tools.OpenWithExternalDeveloper\ExternalDeveloperConfigurationDialog.cs" />
-    <Compile Include="gtk-gui\FSpot.Tools.OpenWithExternalDeveloper.ExternalDeveloperConfigurationDialog.cs" />
-    <Compile Include="FSpot.Tools.OpenWithExternalDeveloper\AbstractExternalDeveloper.cs" />
-    <Compile Include="FSpot.Tools.OpenWithExternalDeveloper\UFRaw.cs" />
+    <Compile Include="FSpot.Tools.ExternalDeveloper\AbstractExternalDeveloper.cs" />
+    <Compile Include="FSpot.Tools.ExternalDeveloper\UFRaw.cs" />
+    <Compile Include="FSpot.Tools.ExternalDeveloper\ExternalDeveloperConfigurationDialog.cs" />
+    <Compile Include="gtk-gui\FSpot.Tools.ExternalDeveloper.ExternalDeveloperConfigurationDialog.cs" />
+    <Compile Include="FSpot.Tools.ExternalDeveloper\ExternalDeveloper.cs" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\..\..\Core\FSpot.Core\FSpot.Core.csproj">
@@ -86,8 +91,8 @@
     <EmbeddedResource Include="gtk-gui\gui.stetic">
       <LogicalName>gui.stetic</LogicalName>
     </EmbeddedResource>
-    <EmbeddedResource Include="Resources\OpenWithExternalDeveloper.addin.xml">
-      <LogicalName>OpenWithExternalDeveloper.addin.xml</LogicalName>
+    <EmbeddedResource Include="Resources\ExternalDeveloper.addin.xml">
+      <LogicalName>ExternalDeveloper.addin.xml</LogicalName>
     </EmbeddedResource>
   </ItemGroup>
   <ProjectExtensions>

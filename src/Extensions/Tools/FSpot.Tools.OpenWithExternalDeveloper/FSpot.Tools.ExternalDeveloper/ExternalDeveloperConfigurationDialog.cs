@@ -27,19 +27,28 @@
 //
 using System;
 
-namespace FSpot.Tools.OpenWithExternalDeveloper
+namespace FSpot.Tools.ExternalDeveloper
 {
 	public partial class ExternalDeveloperConfigurationDialog : Gtk.Dialog
 	{
 		public ExternalDeveloperConfigurationDialog ()
 		{
+			foreach (string name in ExternalDeveloperFactory.GetAvaliableDevelopers())
+			{
+				this.developer.AppendText (name);
+			}
 			this.Build ();
 		}
 
 		protected void OnOkClicked (object sender, EventArgs e)
 		{
 			ExternalDeveloperFactory.SetPreferredDeveloper (this.developer.ActiveText);
-			this.Destroy ();
+			this.Hide ();
+		}
+
+		protected void OnCancelClicked (object sender, EventArgs e)
+		{
+			this.Hide ();
 		}
 	}
 }

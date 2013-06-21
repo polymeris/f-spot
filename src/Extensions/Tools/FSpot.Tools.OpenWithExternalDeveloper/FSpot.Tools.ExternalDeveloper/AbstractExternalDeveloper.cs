@@ -47,7 +47,7 @@ using FSpot.Imaging;
 using Hyena;
 using Mono.Unix;
 
-namespace FSpot.Tools.OpenWithExternalDeveloper
+namespace FSpot.Tools.ExternalDeveloper
 {
 	/// <summary>
 	/// Base class for external developer handlers. Uses the Development class to pass development parameters
@@ -125,7 +125,8 @@ namespace FSpot.Tools.OpenWithExternalDeveloper
 
 			public System.Uri DevelopedUri
 			{
-				get {
+				get
+				{
 					return developed;
 				}
 			}

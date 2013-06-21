@@ -25,16 +25,25 @@
 //  WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
 //
 //
-using System;
-using FSpot.Extensions;
 
-namespace FSpot.Tools.OpenWithExternalDeveloper
+using System;
+using System.Collections.Generic;
+using FSpot.Extensions;
+using GLib;
+using System.Linq;
+
+namespace FSpot.Tools.ExternalDeveloper
 {
 	public class ExternalDeveloperFactory
 	{
 		public const string PREFERENCES_EXTENSION =
 			Preferences.APP_FSPOT + "extension/openwithexternaldeveloper/";
 		public const string DEVELOPER_KEY = PREFERENCES_EXTENSION + "developer";
+
+		public static IEnumerable<string> GetAvaliableDevelopers()
+		{
+			return AppInfoAdapter.GetAllForType ("image/x-dcraw").Select (info => info.Name);
+		}
 
 		public static void SetPreferredDeveloper(string name)
 		{
@@ -51,7 +60,7 @@ namespace FSpot.Tools.OpenWithExternalDeveloper
 		}
 	}
 
-	public class ExternalDeveloperCommand : ICommand
+	public class OpenWithExternalDeveloperCommand : ICommand
 	{
 		public void Run (object o, EventArgs e)
 		{
