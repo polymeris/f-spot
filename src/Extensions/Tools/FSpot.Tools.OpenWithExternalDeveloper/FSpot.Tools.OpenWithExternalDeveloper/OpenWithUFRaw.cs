@@ -47,9 +47,10 @@ namespace FSpot.Tools.OpenWithExternalDeveloper
 		{
 			string executable = "ufraw";
 			string args = String.Format (
-				"--overwrite --out-type=jpeg --output {1} {0}",
-				d.Raw, d.DevelopedUri);
+				"--overwrite --out-type=jpeg --output='{1}' '{0}'",
+				d.RawUri.LocalPath, d.DevelopedUri.LocalPath);
 			d.StartWatching ();
+			Log.Information (String.Format ("Calling UFRaw: {0} {1}", executable, args));
 			System.Diagnostics.Process ufraw = System.Diagnostics.Process.Start (executable, args);
 			ufraw.Exited += new EventHandler((sender, e) => d.StopWatching());
 		}

@@ -54,7 +54,7 @@ namespace FSpot.Tools.OpenWithExternalDeveloper
 			if (handler == null)
 			switch (Preferences.Get<string>(DEVELOPER_KEY))
 			{
-				case "UFRaw":
+				default:
 					handler = new OpenWithUFRaw ();
 				break;
 			}
@@ -66,6 +66,11 @@ namespace FSpot.Tools.OpenWithExternalDeveloper
 
 	public class ConfigureExternalDeveloperCommand : ICommand
 	{
+		public ConfigureExternalDeveloperCommand ()
+		{
+			dialog = new ExternalDeveloperConfigurationDialog ();
+		}
+
 		public void Run (object o, EventArgs e)
 		{
 			dialog.Show ();

@@ -15,7 +15,7 @@
     <DebugSymbols>True</DebugSymbols>
     <DebugType>full</DebugType>
     <Optimize>False</Optimize>
-    <OutputPath>bin\Debug</OutputPath>
+    <OutputPath>~\.config\f-spot\addins</OutputPath>
     <DefineConstants>DEBUG;</DefineConstants>
     <ErrorReport>prompt</ErrorReport>
     <WarningLevel>4</WarningLevel>
@@ -24,7 +24,7 @@
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
     <DebugType>none</DebugType>
     <Optimize>True</Optimize>
-    <OutputPath>bin\Release</OutputPath>
+    <OutputPath>~\.config\f-spot\addins</OutputPath>
     <ErrorReport>prompt</ErrorReport>
     <WarningLevel>4</WarningLevel>
     <ConsolePause>False</ConsolePause>
@@ -51,9 +51,6 @@
   <ItemGroup>
     <Folder Include="FSpot.Tools.OpenWithExternalDeveloper\" />
     <Folder Include="Resources\" />
-  </ItemGroup>
-  <ItemGroup>
-    <None Include="Resources\OpenWithExternalDeveloper.addin.xml" />
   </ItemGroup>
   <ItemGroup>
     <Compile Include="FSpot.Tools.OpenWithExternalDeveloper\OpenWithExternalDeveloper.cs" />
@@ -88,6 +85,9 @@
   <ItemGroup>
     <EmbeddedResource Include="gtk-gui\gui.stetic">
       <LogicalName>gui.stetic</LogicalName>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Resources\OpenWithExternalDeveloper.addin.xml">
+      <LogicalName>OpenWithExternalDeveloper.addin.xml</LogicalName>
     </EmbeddedResource>
   </ItemGroup>
   <ProjectExtensions>

@@ -75,22 +75,34 @@ namespace FSpot.Tools.OpenWithExternalDeveloper
 				watcher = new FileSystemWatcher ();
 				watcher.Path = Path.GetDirectoryName(developed.LocalPath); 
 				watcher.Filter = Path.GetFileName(developed.LocalPath);
-				watcher.Changed += new FileSystemEventHandler((sender, e) => this.OnDevelopedChanged());
-				watcher.Created += new FileSystemEventHandler((sender, e) => this.OnDevelopedChanged());
-				
+				watcher.Changed += new FileSystemEventHandler(
+					(sender, e) => this.OnDevelopedChanged(false));
+				watcher.Created += new FileSystemEventHandler(
+					(sender, e) => this.OnDevelopedChanged(true));
+				Log.Information (String.Format (
+					"Watching developments to file '{0}'",
+					developed.LocalPath));
 				watcher.EnableRaisingEvents = true;
 			}
 
 			public void StopWatching ()
 			{
+				Log.Information (String.Format (
+					"Stop watching developments to file '{0}'",
+					developed.LocalPath));
 				watcher = null;
 			}
 
-			protected void OnDevelopedChanged ()
+			protected void OnDevelopedChanged (bool created)
 			{
 				SafeUri uri = new SafeUri (developed);
-				
-				photo.AddVersion(uri.GetBaseUri(), uri.GetFilename(), version, true);
+
+				Log.Information (String.Format (
+					"File '{0}' has been created or changed, adding version to database",
+					uri));
+
+				if (created)
+					photo.AddVersion(uri.GetBaseUri(), uri.GetFilename(), version, true);
 				photo.Changes.DataChanged = true;
 				App.Instance.Database.Photos.Commit (photo);
 			}
@@ -100,6 +112,14 @@ namespace FSpot.Tools.OpenWithExternalDeveloper
 				get
 				{
 					return photo.GetVersion (Photo.OriginalVersionId) as PhotoVersion;
+				}
+			}
+
+			public Hyena.SafeUri RawUri
+			{
+				get
+				{
+					return Raw.Uri;
 				}
 			}
 
