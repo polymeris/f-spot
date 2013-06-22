@@ -1,4 +1,4 @@
-//  OpenWithExternalDeveloper.cs
+//  GenericExternalDeveloper.cs
 //
 //  Author:
 //       Camilo Polymeris <cpolymeris@gmail.com>
@@ -28,41 +28,36 @@
 
 using System;
 using System.Collections.Generic;
+
+using System.IO;
+
+using FSpot;
+
+using FSpot.Core;
 using FSpot.Extensions;
+using FSpot.Imaging;
+using Hyena;
+using Mono.Unix;
 using GLib;
-using System.Linq;
 
 namespace FSpot.Tools.ExternalDeveloper
 {
-	public class OpenWithExternalDeveloperCommand : ICommand
+
+	public class GenericExternalDeveloper : AbstractExternalDeveloper
 	{
-		public void Run (object o, EventArgs e)
+		public GenericExternalDeveloper(string executable)
 		{
-			foreach (Photo p in App.Instance.Organizer.SelectedPhotos ())
-				try
-				{
-					ExternalDeveloperFactory.Get().Run(o, e, p);
-				}
-				catch (OperationCanceledException)
-				{
-					return;
-				}
-		}
-    	}
-
-	public class ConfigureExternalDeveloperCommand : ICommand
-	{
-		public ConfigureExternalDeveloperCommand ()
-		{
-			dialog = new ExternalDeveloperConfigurationDialog ();
+			this.executable = executable;
 		}
 
-		public void Run (object o, EventArgs e)
+		protected override void CallExternalDeveloper (Development d)
 		{
-			dialog.Show ();
+			d.StartWatching ();
+			Hyena.Log.Information (String.Format ("Calling {0}", executable));
+			System.Diagnostics.Process ufraw = System.Diagnostics.Process.Start (executable);
+			ufraw.Exited += new EventHandler((sender, e) => d.StopWatching());
 		}
 
-		protected ExternalDeveloperConfigurationDialog dialog;
+		private string executable;
 	}
 }
-

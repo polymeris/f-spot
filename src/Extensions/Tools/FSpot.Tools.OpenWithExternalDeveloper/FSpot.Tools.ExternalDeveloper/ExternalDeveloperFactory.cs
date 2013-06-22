@@ -1,4 +1,4 @@
-//  OpenWithExternalDeveloper.cs
+//  ExternalDeveloperFactory.cs
 //
 //  Author:
 //       Camilo Polymeris <cpolymeris@gmail.com>
@@ -34,35 +34,59 @@ using System.Linq;
 
 namespace FSpot.Tools.ExternalDeveloper
 {
-	public class OpenWithExternalDeveloperCommand : ICommand
+	public class ExternalDeveloperFactory
 	{
-		public void Run (object o, EventArgs e)
-		{
-			foreach (Photo p in App.Instance.Organizer.SelectedPhotos ())
-				try
-				{
-					ExternalDeveloperFactory.Get().Run(o, e, p);
-				}
-				catch (OperationCanceledException)
-				{
-					return;
-				}
-		}
-    	}
+		public const string PREFERENCES_EXTENSION =
+			Preferences.APP_FSPOT + "extension/openwithexternaldeveloper/";
+		public const string DEVELOPER_KEY = PREFERENCES_EXTENSION + "developer";
 
-	public class ConfigureExternalDeveloperCommand : ICommand
-	{
-		public ConfigureExternalDeveloperCommand ()
+		public static IEnumerable<string> GetAvaliableDevelopers()
 		{
-			dialog = new ExternalDeveloperConfigurationDialog ();
+			return AppInfoAdapter.GetAllForType ("image/x-dcraw").Select(info => info.Name);
 		}
 
-		public void Run (object o, EventArgs e)
+		protected static string[] GetSupportedDevelopers()
 		{
-			dialog.Show ();
+			string[] supported = { "UFRaw", "Rawstudio" };
+			return supported;
 		}
 
-		protected ExternalDeveloperConfigurationDialog dialog;
+		public static bool IsSupported(string name)
+		{
+			return GetSupportedDevelopers().Contains(name);
+		}
+
+		public static void SetPreferredDeveloper(string name)
+		{
+			Preferences.Set (ExternalDeveloperFactory.DEVELOPER_KEY, name);
+		}
+
+		public static AppInfo GetAppInfo(string name)
+		{
+			return AppInfoAdapter.GetAllForType ("image/x-dcraw").FirstOrDefault(info => info.Name == name);
+		}
+
+		public static Icon GetIcon(string name)
+		{
+			return GetAppInfo (name).Icon;
+		}
+
+		public static string GetExecutable(string name)
+		{
+			return GetAppInfo (name).Executable;
+		}
+
+		public static AbstractExternalDeveloper Get()
+		{
+			string name = Preferences.Get<string> (DEVELOPER_KEY);
+			switch (name)
+			{
+				case "UFRaw":
+					return new UFRaw();
+				default:
+					return new GenericExternalDeveloper (GetExecutable(name));
+			}
+		}
 	}
+	
 }
-

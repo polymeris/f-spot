@@ -7,6 +7,9 @@ namespace FSpot.Tools.ExternalDeveloper
 		private global::Gtk.Table table1;
 		private global::Gtk.ComboBox developer;
 		private global::Gtk.Label developerLabel;
+		private global::Gtk.HBox warningBox;
+		private global::Gtk.Image warningIcon;
+		private global::Gtk.Label warning;
 		private global::Gtk.Button buttonCancel;
 		private global::Gtk.Button buttonOk;
 		
@@ -29,9 +32,7 @@ namespace FSpot.Tools.ExternalDeveloper
 			this.table1.ColumnSpacing = ((uint)(6));
 			// Container child table1.Gtk.Table+TableChild
 			this.developer = global::Gtk.ComboBox.NewText ();
-			this.developer.AppendText (global::Mono.Unix.Catalog.GetString ("UFRaw"));
 			this.developer.Name = "developer";
-			this.developer.Active = 0;
 			this.table1.Add (this.developer);
 			global::Gtk.Table.TableChild w2 = ((global::Gtk.Table.TableChild)(this.table1 [this.developer]));
 			w2.LeftAttach = ((uint)(1));
@@ -40,20 +41,52 @@ namespace FSpot.Tools.ExternalDeveloper
 			// Container child table1.Gtk.Table+TableChild
 			this.developerLabel = new global::Gtk.Label ();
 			this.developerLabel.Name = "developerLabel";
-			this.developerLabel.LabelProp = global::Mono.Unix.Catalog.GetString ("Preferred developer");
+			this.developerLabel.Xalign = 1F;
+			this.developerLabel.LabelProp = global::Mono.Unix.Catalog.GetString ("Preferred developer:");
 			this.table1.Add (this.developerLabel);
 			global::Gtk.Table.TableChild w3 = ((global::Gtk.Table.TableChild)(this.table1 [this.developerLabel]));
 			w3.XOptions = ((global::Gtk.AttachOptions)(4));
 			w3.YOptions = ((global::Gtk.AttachOptions)(4));
-			w1.Add (this.table1);
-			global::Gtk.Box.BoxChild w4 = ((global::Gtk.Box.BoxChild)(w1 [this.table1]));
+			// Container child table1.Gtk.Table+TableChild
+			this.warningBox = new global::Gtk.HBox ();
+			this.warningBox.Name = "warningBox";
+			this.warningBox.Spacing = 6;
+			// Container child warningBox.Gtk.Box+BoxChild
+			this.warningIcon = new global::Gtk.Image ();
+			this.warningIcon.Name = "warningIcon";
+			this.warningIcon.Pixbuf = global::Stetic.IconLoader.LoadIcon (this, "gtk-dialog-warning", global::Gtk.IconSize.Menu);
+			this.warningBox.Add (this.warningIcon);
+			global::Gtk.Box.BoxChild w4 = ((global::Gtk.Box.BoxChild)(this.warningBox [this.warningIcon]));
 			w4.Position = 0;
+			w4.Expand = false;
+			w4.Fill = false;
+			// Container child warningBox.Gtk.Box+BoxChild
+			this.warning = new global::Gtk.Label ();
+			this.warning.Name = "warning";
+			this.warning.Xalign = 0F;
+			this.warning.LabelProp = global::Mono.Unix.Catalog.GetString ("warning");
+			this.warning.UseMarkup = true;
+			this.warningBox.Add (this.warning);
+			global::Gtk.Box.BoxChild w5 = ((global::Gtk.Box.BoxChild)(this.warningBox [this.warning]));
+			w5.Position = 1;
+			w5.Expand = false;
+			w5.Fill = false;
+			this.table1.Add (this.warningBox);
+			global::Gtk.Table.TableChild w6 = ((global::Gtk.Table.TableChild)(this.table1 [this.warningBox]));
+			w6.TopAttach = ((uint)(2));
+			w6.BottomAttach = ((uint)(3));
+			w6.RightAttach = ((uint)(2));
+			w6.XOptions = ((global::Gtk.AttachOptions)(4));
+			w6.YOptions = ((global::Gtk.AttachOptions)(4));
+			w1.Add (this.table1);
+			global::Gtk.Box.BoxChild w7 = ((global::Gtk.Box.BoxChild)(w1 [this.table1]));
+			w7.Position = 0;
 			// Internal child FSpot.Tools.ExternalDeveloper.ExternalDeveloperConfigurationDialog.ActionArea
-			global::Gtk.HButtonBox w5 = this.ActionArea;
-			w5.Name = "actionArea";
-			w5.Spacing = 10;
-			w5.BorderWidth = ((uint)(5));
-			w5.LayoutStyle = ((global::Gtk.ButtonBoxStyle)(4));
+			global::Gtk.HButtonBox w8 = this.ActionArea;
+			w8.Name = "actionArea";
+			w8.Spacing = 10;
+			w8.BorderWidth = ((uint)(5));
+			w8.LayoutStyle = ((global::Gtk.ButtonBoxStyle)(4));
 			// Container child actionArea.Gtk.ButtonBox+ButtonBoxChild
 			this.buttonCancel = new global::Gtk.Button ();
 			this.buttonCancel.CanDefault = true;
@@ -63,9 +96,9 @@ namespace FSpot.Tools.ExternalDeveloper
 			this.buttonCancel.UseUnderline = true;
 			this.buttonCancel.Label = "gtk-cancel";
 			this.AddActionWidget (this.buttonCancel, -6);
-			global::Gtk.ButtonBox.ButtonBoxChild w6 = ((global::Gtk.ButtonBox.ButtonBoxChild)(w5 [this.buttonCancel]));
-			w6.Expand = false;
-			w6.Fill = false;
+			global::Gtk.ButtonBox.ButtonBoxChild w9 = ((global::Gtk.ButtonBox.ButtonBoxChild)(w8 [this.buttonCancel]));
+			w9.Expand = false;
+			w9.Fill = false;
 			// Container child actionArea.Gtk.ButtonBox+ButtonBoxChild
 			this.buttonOk = new global::Gtk.Button ();
 			this.buttonOk.CanDefault = true;
@@ -75,20 +108,18 @@ namespace FSpot.Tools.ExternalDeveloper
 			this.buttonOk.UseUnderline = true;
 			this.buttonOk.Label = "gtk-ok";
 			this.AddActionWidget (this.buttonOk, -5);
-			global::Gtk.ButtonBox.ButtonBoxChild w7 = ((global::Gtk.ButtonBox.ButtonBoxChild)(w5 [this.buttonOk]));
-			w7.Position = 1;
-			w7.Expand = false;
-			w7.Fill = false;
+			global::Gtk.ButtonBox.ButtonBoxChild w10 = ((global::Gtk.ButtonBox.ButtonBoxChild)(w8 [this.buttonOk]));
+			w10.Position = 1;
+			w10.Expand = false;
+			w10.Fill = false;
 			if ((this.Child != null)) {
 				this.Child.ShowAll ();
 			}
 			this.DefaultWidth = 400;
 			this.DefaultHeight = 300;
-			w5.Hide ();
+			this.warningBox.Hide ();
 			this.HasDefault = true;
 			this.Show ();
-			this.buttonCancel.Clicked += new global::System.EventHandler (this.OnCancelClicked);
-			this.buttonOk.Clicked += new global::System.EventHandler (this.OnOkClicked);
 		}
 	}
 }

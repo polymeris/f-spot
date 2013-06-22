@@ -33,22 +33,43 @@ namespace FSpot.Tools.ExternalDeveloper
 	{
 		public ExternalDeveloperConfigurationDialog ()
 		{
+			this.Build ();
+
 			foreach (string name in ExternalDeveloperFactory.GetAvaliableDevelopers())
 			{
-				this.developer.AppendText (name);
+				if (name != "F-Spot") //<duh
+					developer.AppendText (name);
 			}
-			this.Build ();
+
+			developer.Active = 0;
+
+			developer.Changed += OnDeveloperChanged;
+			buttonOk.Clicked += OnOkClicked;
+			buttonCancel.Clicked += OnCancelClicked;
 		}
 
 		protected void OnOkClicked (object sender, EventArgs e)
 		{
-			ExternalDeveloperFactory.SetPreferredDeveloper (this.developer.ActiveText);
+			ExternalDeveloperFactory.SetPreferredDeveloper (developer.ActiveText);
 			this.Hide ();
 		}
 
 		protected void OnCancelClicked (object sender, EventArgs e)
 		{
 			this.Hide ();
+		}
+
+		void OnDeveloperChanged (object sender, EventArgs e)
+		{
+			if (ExternalDeveloperFactory.IsSupported (developer.ActiveText))
+				warningBox.Hide ();
+			else
+			{
+				warning.LabelProp = String.Format (
+					"The program <i>{0}</i> is not supported by this extension.",
+					developer.ActiveText);
+				warningBox.Show ();
+			}
 		}
 	}
 }

@@ -15,7 +15,7 @@
     <DebugSymbols>True</DebugSymbols>
     <DebugType>full</DebugType>
     <Optimize>False</Optimize>
-    <OutputPath>~\.config\f-spot\addins</OutputPath>
+    <OutputPath>..\..\..\..\..\..\.config\f-spot\addins</OutputPath>
     <DefineConstants>DEBUG;</DefineConstants>
     <ErrorReport>prompt</ErrorReport>
     <WarningLevel>4</WarningLevel>
@@ -24,7 +24,7 @@
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
     <DebugType>none</DebugType>
     <Optimize>True</Optimize>
-    <OutputPath>~\.config\f-spot\addins</OutputPath>
+    <OutputPath>..\..\..\..\..\..\.config\f-spot\addins</OutputPath>
     <ErrorReport>prompt</ErrorReport>
     <WarningLevel>4</WarningLevel>
     <ConsolePause>False</ConsolePause>
@@ -64,6 +64,8 @@
     <Compile Include="FSpot.Tools.ExternalDeveloper\ExternalDeveloperConfigurationDialog.cs" />
     <Compile Include="gtk-gui\FSpot.Tools.ExternalDeveloper.ExternalDeveloperConfigurationDialog.cs" />
     <Compile Include="FSpot.Tools.ExternalDeveloper\ExternalDeveloper.cs" />
+    <Compile Include="FSpot.Tools.ExternalDeveloper\GenericExternalDeveloper.cs" />
+    <Compile Include="FSpot.Tools.ExternalDeveloper\ExternalDeveloperFactory.cs" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\..\..\Core\FSpot.Core\FSpot.Core.csproj">
