@@ -31,14 +31,14 @@ namespace FSpot.Tools.ExternalDeveloper
 {
 	public partial class ExternalDeveloperConfigurationDialog : Gtk.Dialog
 	{
-		public ExternalDeveloperConfigurationDialog ()
+		public ExternalDeveloperConfigurationDialog()
 		{
-			this.Build ();
+			this.Build();
 
 			foreach (string name in ExternalDeveloperFactory.GetAvaliableDevelopers())
 			{
 				if (name != "F-Spot") //<duh
-					developer.AppendText (name);
+					developer.AppendText(name);
 			}
 
 			developer.Active = 0;
@@ -48,27 +48,27 @@ namespace FSpot.Tools.ExternalDeveloper
 			buttonCancel.Clicked += OnCancelClicked;
 		}
 
-		protected void OnOkClicked (object sender, EventArgs e)
+		protected void OnOkClicked(object sender, EventArgs e)
 		{
-			ExternalDeveloperFactory.SetPreferredDeveloper (developer.ActiveText);
-			this.Hide ();
+			ExternalDeveloperFactory.SetPreferredDeveloper(developer.ActiveText);
+			this.Hide();
 		}
 
-		protected void OnCancelClicked (object sender, EventArgs e)
+		protected void OnCancelClicked(object sender, EventArgs e)
 		{
-			this.Hide ();
+			this.Hide();
 		}
 
-		void OnDeveloperChanged (object sender, EventArgs e)
+		void OnDeveloperChanged(object sender, EventArgs e)
 		{
-			if (ExternalDeveloperFactory.IsSupported (developer.ActiveText))
-				warningBox.Hide ();
+			if (ExternalDeveloperFactory.IsSupported(developer.ActiveText))
+				warningBox.Hide();
 			else
 			{
-				warning.LabelProp = String.Format (
+				warning.LabelProp = String.Format(
 					"The program <i>{0}</i> is not supported by this extension.",
 					developer.ActiveText);
-				warningBox.Show ();
+				warningBox.Show();
 			}
 		}
 	}

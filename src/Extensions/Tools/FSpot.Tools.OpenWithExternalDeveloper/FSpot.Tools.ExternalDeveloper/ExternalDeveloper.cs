@@ -25,41 +25,36 @@
 //  WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
 //
 //
-
 using System;
-using System.Collections.Generic;
 using FSpot.Extensions;
-using GLib;
-using System.Linq;
 
 namespace FSpot.Tools.ExternalDeveloper
 {
 	public class OpenWithExternalDeveloperCommand : ICommand
 	{
-		public void Run (object o, EventArgs e)
+		public void Run(object o, EventArgs e)
 		{
 			foreach (Photo p in App.Instance.Organizer.SelectedPhotos ())
 				try
 				{
 					ExternalDeveloperFactory.Get().Run(o, e, p);
-				}
-				catch (OperationCanceledException)
+				} catch (OperationCanceledException)
 				{
 					return;
 				}
 		}
-    	}
+	}
 
 	public class ConfigureExternalDeveloperCommand : ICommand
 	{
-		public ConfigureExternalDeveloperCommand ()
+		public ConfigureExternalDeveloperCommand()
 		{
-			dialog = new ExternalDeveloperConfigurationDialog ();
+			dialog = new ExternalDeveloperConfigurationDialog();
 		}
 
-		public void Run (object o, EventArgs e)
+		public void Run(object o, EventArgs e)
 		{
-			dialog.Show ();
+			dialog.Show();
 		}
 
 		protected ExternalDeveloperConfigurationDialog dialog;

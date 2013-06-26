@@ -25,12 +25,10 @@
 //  WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
 //
 //
-
 using System;
 using System.Collections.Generic;
-using FSpot.Extensions;
-using GLib;
 using System.Linq;
+using GLib;
 
 namespace FSpot.Tools.ExternalDeveloper
 {
@@ -42,7 +40,7 @@ namespace FSpot.Tools.ExternalDeveloper
 
 		public static IEnumerable<string> GetAvaliableDevelopers()
 		{
-			return AppInfoAdapter.GetAllForType ("image/x-dcraw").Select(info => info.Name);
+			return AppInfoAdapter.GetAllForType("image/x-dcraw").Select(info => info.Name);
 		}
 
 		protected static string[] GetSupportedDevelopers()
@@ -58,33 +56,34 @@ namespace FSpot.Tools.ExternalDeveloper
 
 		public static void SetPreferredDeveloper(string name)
 		{
-			Preferences.Set (ExternalDeveloperFactory.DEVELOPER_KEY, name);
+			Preferences.Set(ExternalDeveloperFactory.DEVELOPER_KEY, name);
 		}
 
 		public static AppInfo GetAppInfo(string name)
 		{
-			return AppInfoAdapter.GetAllForType ("image/x-dcraw").FirstOrDefault(info => info.Name == name);
+			return AppInfoAdapter.GetAllForType("image/x-dcraw").FirstOrDefault(
+				info => info.Name == name);
 		}
 
 		public static Icon GetIcon(string name)
 		{
-			return GetAppInfo (name).Icon;
+			return GetAppInfo(name).Icon;
 		}
 
 		public static string GetExecutable(string name)
 		{
-			return GetAppInfo (name).Executable;
+			return GetAppInfo(name).Executable;
 		}
 
 		public static AbstractExternalDeveloper Get()
 		{
-			string name = Preferences.Get<string> (DEVELOPER_KEY);
+			string name = Preferences.Get<string>(DEVELOPER_KEY);
 			switch (name)
 			{
 				case "UFRaw":
 					return new UFRaw();
 				default:
-					return new GenericExternalDeveloper (GetExecutable(name));
+					return new GenericExternalDeveloper(GetExecutable(name));
 			}
 		}
 	}

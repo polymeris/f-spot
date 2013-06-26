@@ -25,24 +25,11 @@
 //  WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
 //
 //
-
 using System;
-using System.Collections.Generic;
-
-using System.IO;
-
-using FSpot;
-
-using FSpot.Core;
-using FSpot.Extensions;
-using FSpot.Imaging;
 using Hyena;
-using Mono.Unix;
-using GLib;
 
 namespace FSpot.Tools.ExternalDeveloper
 {
-
 	public class GenericExternalDeveloper : AbstractExternalDeveloper
 	{
 		public GenericExternalDeveloper(string executable)
@@ -50,11 +37,11 @@ namespace FSpot.Tools.ExternalDeveloper
 			this.executable = executable;
 		}
 
-		protected override void CallExternalDeveloper (Development d)
+		protected override void CallExternalDeveloper(Development d)
 		{
-			d.StartWatching ();
-			Hyena.Log.Information (String.Format ("Calling {0}", executable));
-			System.Diagnostics.Process ufraw = System.Diagnostics.Process.Start (executable);
+			d.StartWatching();
+			Hyena.Log.Information(String.Format("Calling {0}", executable));
+			System.Diagnostics.Process ufraw = System.Diagnostics.Process.Start(executable);
 			ufraw.Exited += new EventHandler((sender, e) => d.StopWatching());
 		}
 

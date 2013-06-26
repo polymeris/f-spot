@@ -66,6 +66,7 @@
     <Compile Include="FSpot.Tools.ExternalDeveloper\ExternalDeveloper.cs" />
     <Compile Include="FSpot.Tools.ExternalDeveloper\GenericExternalDeveloper.cs" />
     <Compile Include="FSpot.Tools.ExternalDeveloper\ExternalDeveloperFactory.cs" />
+    <Compile Include="FSpot.Tools.ExternalDeveloper\Rawstudio.cs" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\..\..\Core\FSpot.Core\FSpot.Core.csproj">
@@ -102,6 +103,8 @@
       <Properties>
         <Policies>
           <StandardHeader Text=" ${FileName}&#xA;&#xA; Author:&#xA;      ${AuthorName} &lt;${AuthorEmail}&gt;&#xA;&#xA; Copyright (c) ${Year} ${AuthorName}&#xA;&#xA; Permission is hereby granted, free of charge, to any person obtaining&#xA; a copy of this software and associated documentation files (the&#xA; &quot;Software&quot;), to deal in the Software without restriction, including&#xA; without limitation the rights to use, copy, modify, merge, publish,&#xA; distribute, sublicense, and/or sell copies of the Software, and to&#xA; permit persons to whom the Software is furnished to do so, subject to&#xA; the following conditions:&#xA;&#xA; The above copyright notice and this permission notice shall be&#xA; included in all copies or substantial portions of the Software.&#xA;&#xA; THE SOFTWARE IS PROVIDED AS IS, WITHOUT WARRANTY OF ANY KIND,&#xA; EXPRESS OR IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF&#xA; MERCHANTABILITY, FITNESS FOR A PARTICULAR PURPOSE AND&#xA; NONINFRINGEMENT. IN NO EVENT SHALL THE AUTHORS OR COPYRIGHT HOLDERS BE&#xA; LIABLE FOR ANY CLAIM, DAMAGES OR OTHER LIABILITY, WHETHER IN AN ACTION&#xA; OF CONTRACT, TORT OR OTHERWISE, ARISING FROM, OUT OF OR IN CONNECTION&#xA; WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.&#xA; &#xA;" IncludeInNewFiles="True" />
+          <TextStylePolicy FileWidth="100" TabsToSpaces="False" EolMarker="Unix" inheritsSet="VisualStudio" inheritsScope="text/plain" scope="text/x-csharp" />
+          <CSharpFormattingPolicy IndentSwitchBody="True" AnonymousMethodBraceStyle="NextLine" PropertyBraceStyle="NextLine" PropertyGetBraceStyle="NextLine" PropertySetBraceStyle="NextLine" EventBraceStyle="NextLine" EventAddBraceStyle="NextLine" EventRemoveBraceStyle="NextLine" StatementBraceStyle="NextLine" ArrayInitializerBraceStyle="NextLine" BeforeMethodDeclarationParentheses="False" BeforeMethodCallParentheses="False" BeforeConstructorDeclarationParentheses="False" BeforeDelegateDeclarationParentheses="False" NewParentheses="False" inheritsSet="Mono" inheritsScope="text/x-csharp" scope="text/x-csharp" />
         </Policies>
       </Properties>
     </MonoDevelop>

@@ -35,23 +35,16 @@
 //
 //
 using System;
-using System.Collections.Generic;
-
 using System.IO;
-
-using FSpot;
-
-using FSpot.Core;
-using FSpot.Extensions;
 using FSpot.Imaging;
 using Hyena;
-using Mono.Unix;
+using Mono.Posix;
 
 namespace FSpot.Tools.ExternalDeveloper
 {
 	/// <summary>
-	/// Base class for external developer handlers. Uses the Development class to pass development parameters
-	/// to the derived classes' implamentation of CallExternalDeveloper.
+	/// Base class for external developer handlers. Uses the Development class to pass development
+	/// parameters to the derived classes' implamentation of CallExternalDeveloper.
 	/// Includes a file watcher to update the Photo with a new version when changes are registered.
 	/// </summary>
 	public abstract class AbstractExternalDeveloper
@@ -63,55 +56,55 @@ namespace FSpot.Tools.ExternalDeveloper
 			public Development(Photo p)
 			{
 				photo = p;
-				if (!ImageFile.IsRaw (Raw.Uri))
+				if (!ImageFile.IsRaw(Raw.Uri))
 					throw new InvalidDataException();
 
-				version = GetVersionName (photo);
-				developed = GetUriForVersionName (photo, version);
+				version = GetVersionName(photo);
+				developed = GetUriForVersionName(photo, version);
 			}
 
-			public void StartWatching ()
+			public void StartWatching()
 			{
-				watcher = new FileSystemWatcher ();
+				watcher = new FileSystemWatcher();
 				watcher.Path = Path.GetDirectoryName(developed.LocalPath); 
 				watcher.Filter = Path.GetFileName(developed.LocalPath);
 				watcher.Changed += new FileSystemEventHandler(
 					(sender, e) => this.OnDevelopedChanged(false));
 				watcher.Created += new FileSystemEventHandler(
 					(sender, e) => this.OnDevelopedChanged(true));
-				Log.Information (String.Format (
+				Log.Information(String.Format(
 					"Watching developments to file '{0}'",
 					developed.LocalPath));
 				watcher.EnableRaisingEvents = true;
 			}
 
-			public void StopWatching ()
+			public void StopWatching()
 			{
-				Log.Information (String.Format (
+				Log.Information(String.Format(
 					"Stop watching developments to file '{0}'",
 					developed.LocalPath));
 				watcher = null;
 			}
 
-			protected void OnDevelopedChanged (bool created)
+			protected void OnDevelopedChanged(bool created)
 			{
-				SafeUri uri = new SafeUri (developed);
+				SafeUri uri = new SafeUri(developed);
 
-				Log.Information (String.Format (
+				Log.Information(String.Format(
 					"File '{0}' has been created or changed, adding version to database",
 					uri));
 
 				if (created)
 					photo.AddVersion(uri.GetBaseUri(), uri.GetFilename(), version, true);
 				photo.Changes.DataChanged = true;
-				App.Instance.Database.Photos.Commit (photo);
+				App.Instance.Database.Photos.Commit(photo);
 			}
 
 			public PhotoVersion Raw
 			{
 				get
 				{
-					return photo.GetVersion (Photo.OriginalVersionId) as PhotoVersion;
+					return photo.GetVersion(Photo.OriginalVersionId) as PhotoVersion;
 				}
 			}
 
@@ -132,7 +125,7 @@ namespace FSpot.Tools.ExternalDeveloper
 			}
 
 			private Photo photo;
-			private string version; //< Name of the version of this photo the development is assigned to
+			private string version; //< Name of the version of this photo the dev is assigned to
 			private System.Uri developed; //< Path of output jpeg
 			private FileSystemWatcher watcher;
 		}
@@ -141,46 +134,46 @@ namespace FSpot.Tools.ExternalDeveloper
 		/// Derived classes should reimplement this for program-specific functionality.
 		/// Remember to call d.StartWatching & d.StopWatching on program start and end, resp.
 		/// </summary>
-		protected abstract void CallExternalDeveloper (Development d);
+		protected abstract void CallExternalDeveloper(Development d);
 
-		public void Run (object o, EventArgs e, Photo p)
+		public void Run(object o, EventArgs e, Photo p)
 		{
 			try
 			{
 				Development d = new Development(p);
-				CallExternalDeveloper (d);
-			}
-			catch (InvalidDataException)
+				CallExternalDeveloper(d);
+			} catch (InvalidDataException)
 			{
-				Log.Warning ("The original version of this image is not a (supported) RAW file");
+				Log.Warning("The original version of this image is not a (supported) RAW file");
 				return;
 			}
 		}
 
-		protected static string GetVersionName (Photo p)
+		protected static string GetVersionName(Photo p)
 		{
-			return GetVersionName (p, 1);
+			return GetVersionName(p, 1);
 		}
 		
-		private static string GetVersionName (Photo p, int i)
+		private static string GetVersionName(Photo p, int i)
 		{
-			string name = Catalog.GetPluralString ("External development", "External development #{0}", i);
-			name = String.Format (name, i);
-			if (p.VersionNameExists (name))
-				return GetVersionName (p, i + 1);
+			string name = Catalog.GetPluralString("External development",
+			                                      "External development #{0}", i);
+			name = String.Format(name, i);
+			if (p.VersionNameExists(name))
+				return GetVersionName(p, i + 1);
 			return name;
 		}
 		
-		protected static System.Uri GetUriForVersionName (Photo p, string version_name)
+		protected static System.Uri GetUriForVersionName(Photo p, string version_name)
 		{
-			string name_without_ext = System.IO.Path.GetFileNameWithoutExtension (p.Name);
-			return new System.Uri (System.IO.Path.Combine (DirectoryPath (p),  name_without_ext
-			                                               + " (" + version_name + ")" + ".jpg"));
+			string name_without_ext = System.IO.Path.GetFileNameWithoutExtension(p.Name);
+			return new System.Uri(System.IO.Path.Combine(DirectoryPath(p), name_without_ext
+				+ " (" + version_name + ")" + ".jpg"));
 		}
 		
-		protected static string DirectoryPath (Photo p)
+		protected static string DirectoryPath(Photo p)
 		{
-			return p.VersionUri (Photo.OriginalVersionId).GetBaseUri ();
+			return p.VersionUri(Photo.OriginalVersionId).GetBaseUri();
 		}
 	}	
 }
