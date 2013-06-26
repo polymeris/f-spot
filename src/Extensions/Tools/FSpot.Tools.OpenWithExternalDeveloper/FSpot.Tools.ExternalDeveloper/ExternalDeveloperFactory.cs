@@ -82,6 +82,11 @@ namespace FSpot.Tools.ExternalDeveloper
 			{
 				case "UFRaw":
 					return new UFRaw();
+				case "Rawstudio":
+					if (Rawstudio.supportedVersionIsInstalled())
+						return new Rawstudio();
+					else
+						return new GenericExternalDeveloper(GetExecutable(name));
 				default:
 					return new GenericExternalDeveloper(GetExecutable(name));
 			}

@@ -61,7 +61,14 @@ namespace FSpot.Tools.ExternalDeveloper
 
 		void OnDeveloperChanged(object sender, EventArgs e)
 		{
-			if (ExternalDeveloperFactory.IsSupported(developer.ActiveText))
+			if (developer.ActiveText == "Rawstudio" && Rawstudio.supportedVersionIsInstalled())
+			{
+				warning.LabelProp = String.Format(
+					"Only Rawstudio versions 2.1 and up are supported by this extension.",
+					developer.ActiveText);
+				warningBox.Show();
+			}
+			else if (ExternalDeveloperFactory.IsSupported(developer.ActiveText))
 				warningBox.Hide();
 			else
 			{

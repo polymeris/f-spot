@@ -34,6 +34,9 @@ namespace FSpot.Tools.ExternalDeveloper
 
 	public class Rawstudio : AbstractExternalDeveloper
 	{
+
+		private static bool? supported = null;
+
 		protected override void CallExternalDeveloper (Development d)
 		{
 			string executable = "rawstudio";
@@ -45,18 +48,22 @@ namespace FSpot.Tools.ExternalDeveloper
 			rs.Exited += new EventHandler((sender, e) => d.StopWatching());
 		}
 
-		public bool isSupportedVersion()
+		public static bool supportedVersionIsInstalled()
 		{
+			if (supported != null)
+				return (bool)supported;
 			// TODO: if my patch doesn't get accepted by version 2.1, this has to be rewritten
 			string executable = "rawstudio";
 			string args = "--version";
 			System.Diagnostics.Process rs = System.Diagnostics.Process.Start (executable, args);
-			if (!rs.WaitForExit(5000))
+			if (!rs.WaitForExit(2000)) //< that should be more than enough time, I hope
 			{
 				rs.Kill();
-				return false;
+				supported = false;
 			}
-			return rs.ExitCode == 0;
+			else
+				supported = rs.ExitCode == 0;
+			return (bool)supported;
 		}
 	}
 
