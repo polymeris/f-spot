@@ -32,6 +32,9 @@ using GLib;
 
 namespace FSpot.Tools.ExternalDeveloper
 {
+	/// <summary>
+	/// Produces <see cref="AbstractExternalDeveloper"/>s depending on the user's preferences.
+	/// </summary>
 	public class ExternalDeveloperFactory
 	{
 		public const string PREFERENCES_EXTENSION =
@@ -52,6 +55,11 @@ namespace FSpot.Tools.ExternalDeveloper
 		public static bool IsSupported(string name)
 		{
 			return GetSupportedDevelopers().Contains(name);
+		}
+
+		public static bool CanSetJpegQualityForDeveloper(string name)
+		{
+			return IsSupported(name) && (name != "Rawstudio");
 		}
 
 		public static void SetPreferredDeveloper(string name)
@@ -83,7 +91,7 @@ namespace FSpot.Tools.ExternalDeveloper
 				case "UFRaw":
 					return new UFRaw();
 				case "Rawstudio":
-					if (Rawstudio.supportedVersionIsInstalled())
+					if (Rawstudio.SupportedVersionIsInstalled())
 						return new Rawstudio();
 					else
 						return new GenericExternalDeveloper(GetExecutable(name));

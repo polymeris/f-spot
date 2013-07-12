@@ -30,6 +30,9 @@ using FSpot.Extensions;
 
 namespace FSpot.Tools.ExternalDeveloper
 {
+	/// <summary>
+	/// Command invoked when the user clicks on "Open with external developer..."
+	/// </summary>
 	public class OpenWithExternalDeveloperCommand : ICommand
 	{
 		public void Run(object o, EventArgs e)
@@ -45,6 +48,10 @@ namespace FSpot.Tools.ExternalDeveloper
 		}
 	}
 
+	/// <summary>
+	/// Command invoked (<see cref="Run"/>) when the user clicks on the menu option to show
+	/// the configuration dialog.
+	/// </summary>
 	public class ConfigureExternalDeveloperCommand : ICommand
 	{
 		public ConfigureExternalDeveloperCommand()

@@ -51,6 +51,9 @@
       <Package>gio-sharp-2.0</Package>
     </Reference>
     <Reference Include="System.Core" />
+    <Reference Include="Hyena">
+      <HintPath>..\..\..\..\..\..\..\..\usr\lib\hyena\Hyena.dll</HintPath>
+    </Reference>
   </ItemGroup>
   <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
   <ItemGroup>
@@ -67,6 +70,8 @@
     <Compile Include="FSpot.Tools.ExternalDeveloper\GenericExternalDeveloper.cs" />
     <Compile Include="FSpot.Tools.ExternalDeveloper\ExternalDeveloperFactory.cs" />
     <Compile Include="FSpot.Tools.ExternalDeveloper\Rawstudio.cs" />
+    <Compile Include="FSpot.Tools.ExternalDeveloper\DarkTable.cs" />
+    <Compile Include="FSpot.Tools.ExternalDeveloper\RawTherapee.cs" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\..\..\Core\FSpot.Core\FSpot.Core.csproj">
@@ -80,10 +85,6 @@
     <ProjectReference Include="..\..\..\Clients\MainApp\MainApp.csproj">
       <Project>{27EC05FB-0223-4B26-8157-E49AF81D0007}</Project>
       <Name>MainApp</Name>
-    </ProjectReference>
-    <ProjectReference Include="..\..\..\..\lib\Hyena\Hyena\Hyena.csproj">
-      <Project>{95374549-9553-4C1E-9D89-667755F90E12}</Project>
-      <Name>Hyena</Name>
     </ProjectReference>
     <ProjectReference Include="..\..\..\..\lib\unique-sharp\unique-sharp.csproj">
       <Project>{5DBBB8C5-7BAF-46DA-B7D2-2486430141E2}</Project>

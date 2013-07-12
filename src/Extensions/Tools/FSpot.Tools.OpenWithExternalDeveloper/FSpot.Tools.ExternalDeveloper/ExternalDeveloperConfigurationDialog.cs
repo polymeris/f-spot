@@ -31,6 +31,9 @@ namespace FSpot.Tools.ExternalDeveloper
 {
 	public partial class ExternalDeveloperConfigurationDialog : Gtk.Dialog
 	{
+		/// <summary>
+		/// Build the configuration dialog and populate the "Developers" combobox.
+		/// </summary>
 		public ExternalDeveloperConfigurationDialog()
 		{
 			this.Build();
@@ -61,7 +64,7 @@ namespace FSpot.Tools.ExternalDeveloper
 
 		void OnDeveloperChanged(object sender, EventArgs e)
 		{
-			if (developer.ActiveText == "Rawstudio" && Rawstudio.supportedVersionIsInstalled())
+			if (developer.ActiveText == "Rawstudio" && Rawstudio.SupportedVersionIsInstalled())
 			{
 				warning.LabelProp = String.Format(
 					"Only Rawstudio versions 2.1 and up are supported by this extension.",
@@ -77,6 +80,9 @@ namespace FSpot.Tools.ExternalDeveloper
 					developer.ActiveText);
 				warningBox.Show();
 			}
+
+			quality.Sensitive =
+				ExternalDeveloperFactory.CanSetJpegQualityForDeveloper(developer.ActiveText);
 		}
 	}
 }

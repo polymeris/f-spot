@@ -67,23 +67,15 @@
       <Name>FSpot.Core</Name>
       <Private>False</Private>
     </ProjectReference>
-    <ProjectReference Include="..\..\..\..\external\Hyena\Hyena\Hyena.csproj">
-      <Project>{95374549-9553-4C1E-9D89-667755F90E12}</Project>
-      <Name>Hyena</Name>
-      <Private>False</Private>
-    </ProjectReference>
-    <ProjectReference Include="..\..\..\..\external\Hyena\Hyena.Gui\Hyena.Gui.csproj">
-      <Project>{C856EFD8-E812-4E61-8B76-E3583D94C233}</Project>
-      <Name>Hyena.Gui</Name>
-      <Private>False</Private>
-    </ProjectReference>
     <ProjectReference Include="..\..\..\..\lib\unique-sharp\unique-sharp.csproj">
       <Project>{5DBBB8C5-7BAF-46DA-B7D2-2486430141E2}</Project>
       <Name>unique-sharp</Name>
     </ProjectReference>
   </ItemGroup>
   <ItemGroup>
-    <Reference Include="gtk-sharp, Version=2.12.0.0, Culture=neutral, PublicKeyToken=35e10195dab3c99f" />
+    <Reference Include="gtk-sharp, Version=2.12.0.0, Culture=neutral, PublicKeyToken=35e10195dab3c99f">
+      <Package>gtk-sharp-2.0</Package>
+    </Reference>
     <Reference Include="Mono.Posix" />
     <Reference Include="ICSharpCode.SharpZipLib" />
     <Reference Include="System" />
@@ -98,9 +90,17 @@
     </Reference>
     <Reference Include="atk-sharp, Version=2.12.0.0, Culture=neutral, PublicKeyToken=35e10195dab3c99f">
       <Private>False</Private>
+      <Package>gtk-sharp-2.0</Package>
     </Reference>
     <Reference Include="glib-sharp, Version=2.12.0.0, Culture=neutral, PublicKeyToken=35e10195dab3c99f">
       <Private>False</Private>
+      <Package>glib-sharp-2.0</Package>
+    </Reference>
+    <Reference Include="Hyena">
+      <HintPath>..\..\..\..\..\..\..\..\usr\lib\hyena\Hyena.dll</HintPath>
+    </Reference>
+    <Reference Include="Hyena.Gui">
+      <HintPath>..\..\..\..\..\..\..\..\usr\lib\hyena\Hyena.Gui.dll</HintPath>
     </Reference>
   </ItemGroup>
   <ItemGroup>

@@ -1,4 +1,4 @@
-//  Rawstudio.cs
+//  RawTherapee.cs
 //
 //  Author:
 //       Camilo Polymeris <cpolymeris@gmail.com>
@@ -32,38 +32,18 @@ using Hyena;
 namespace FSpot.Tools.ExternalDeveloper
 {
 
-	public class Rawstudio : AbstractExternalDeveloper
+	public class RawTherapee : AbstractExternalDeveloper
 	{
-
-		private static bool? supported = null;
-
 		protected override void CallExternalDeveloper (Development d)
 		{
-			string executable = "rawstudio";
-			string args = String.Format ("--output='{1}' '{0}'",
-			                             d.RawUri.LocalPath, d.DevelopedUri.LocalPath);
+			string executable = "ufraw";
+			string args = String.Format (
+				"--overwrite --out-type=jpeg --output='{1}' '{0}'",
+				d.RawUri.LocalPath, d.DevelopedUri.LocalPath);
 			d.StartWatching ();
-			Log.Information (String.Format ("Calling Rawstudio: {0} {1}", executable, args));
-			System.Diagnostics.Process rs = System.Diagnostics.Process.Start (executable, args);
-			rs.Exited += new EventHandler((sender, e) => d.StopWatching());
-		}
-
-		public static bool SupportedVersionIsInstalled()
-		{
-			if (supported != null)
-				return (bool)supported;
-			// TODO: if my patch doesn't get accepted by version 2.1, this has to be rewritten
-			string executable = "rawstudio";
-			string args = "--version";
-			System.Diagnostics.Process rs = System.Diagnostics.Process.Start (executable, args);
-			if (!rs.WaitForExit(2000)) //< that should be more than enough time, I hope
-			{
-				rs.Kill();
-				supported = false;
-			}
-			else
-				supported = rs.ExitCode == 0;
-			return (bool)supported;
+			Log.Information (String.Format ("Calling UFRaw: {0} {1}", executable, args));
+			System.Diagnostics.Process ufraw = System.Diagnostics.Process.Start (executable, args);
+			ufraw.Exited += new EventHandler((sender, e) => d.StopWatching());
 		}
 	}
 

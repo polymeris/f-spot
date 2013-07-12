@@ -15,7 +15,7 @@
     <DebugSymbols>True</DebugSymbols>
     <DebugType>full</DebugType>
     <Optimize>False</Optimize>
-    <OutputPath>..\..\bin\Extensions</OutputPath>
+    <OutputPath>..\..\bin\</OutputPath>
     <DefineConstants>DEBUG</DefineConstants>
     <ErrorReport>prompt</ErrorReport>
     <WarningLevel>4</WarningLevel>
@@ -24,7 +24,7 @@
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
     <DebugType>none</DebugType>
     <Optimize>False</Optimize>
-    <OutputPath>..\..\bin\Extensions</OutputPath>
+    <OutputPath>..\..\bin\</OutputPath>
     <ErrorReport>prompt</ErrorReport>
     <WarningLevel>4</WarningLevel>
     <ConsolePause>False</ConsolePause>
@@ -73,12 +73,31 @@
   <ItemGroup>
     <Reference Include="System" />
     <Reference Include="System.Xml" />
+<<<<<<< Updated upstream
+    <Reference Include="Hyena">
+      <HintPath>..\..\..\..\..\..\usr\lib\hyena\Hyena.dll</HintPath>
+    </Reference>
+    <Reference Include="Hyena.Gui">
+      <HintPath>..\..\..\..\..\..\usr\lib\hyena\Hyena.Gui.dll</HintPath>
+    </Reference>
+    <Reference Include="Mono.Data.Sqlite">
+      <HintPath>..\..\..\..\..\..\usr\lib\hyena\Mono.Data.Sqlite.dll</HintPath>
+    </Reference>
+    <Reference Include="Hyena.Data.Sqlite">
+      <HintPath>..\..\..\..\..\..\usr\lib\hyena\Hyena.Data.Sqlite.dll</HintPath>
+    </Reference>
+=======
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\..\external\Hyena\Hyena\Hyena.csproj">
+    <ProjectReference Include="..\Hyena\Hyena\Hyena.csproj">
       <Project>{95374549-9553-4C1E-9D89-667755F90E12}</Project>
       <Name>Hyena</Name>
       <Private>False</Private>
     </ProjectReference>
+    <ProjectReference Include="..\Hyena\Hyena.Gui\Hyena.Gui.csproj">
+      <Project>{C856EFD8-E812-4E61-8B76-E3583D94C233}</Project>
+      <Name>Hyena.Gui</Name>
+    </ProjectReference>
+>>>>>>> Stashed changes
   </ItemGroup>
 </Project>

@@ -124,6 +124,7 @@ namespace FSpot.Tools.ExternalDeveloper
 				}
 			}
 
+			public  int JpegQuality { get; set; }
 			private Photo photo;
 			private string version; //< Name of the version of this photo the dev is assigned to
 			private System.Uri developed; //< Path of output jpeg

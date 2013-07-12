@@ -56,12 +56,8 @@
   </ProjectExtensions>
   <ItemGroup>
     <Reference Include="System" />
-  </ItemGroup>
-  <ItemGroup>
-    <ProjectReference Include="..\..\..\external\Hyena\Hyena\Hyena.csproj">
-      <Project>{95374549-9553-4C1E-9D89-667755F90E12}</Project>
-      <Name>Hyena</Name>
-      <Private>False</Private>
-    </ProjectReference>
+    <Reference Include="Hyena">
+      <HintPath>..\..\..\..\..\..\..\usr\lib\hyena\Hyena.dll</HintPath>
+    </Reference>
   </ItemGroup>
 </Project>
