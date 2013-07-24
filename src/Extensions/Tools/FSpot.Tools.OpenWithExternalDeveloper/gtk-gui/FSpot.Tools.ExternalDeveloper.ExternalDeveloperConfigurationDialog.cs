@@ -4,9 +4,13 @@ namespace FSpot.Tools.ExternalDeveloper
 {
 	public partial class ExternalDeveloperConfigurationDialog
 	{
-		private global::Gtk.Table table1;
+		private global::Gtk.Table table;
 		private global::Gtk.ComboBox developer;
 		private global::Gtk.Label developerLabel;
+		private global::Gtk.HScale quality;
+		private global::Gtk.Label qualityLabel;
+		private global::Gtk.ComboBox versionBehaviour;
+		private global::Gtk.Label versionLabel;
 		private global::Gtk.HBox warningBox;
 		private global::Gtk.Image warningIcon;
 		private global::Gtk.Label warning;
@@ -24,30 +28,88 @@ namespace FSpot.Tools.ExternalDeveloper
 			// Internal child FSpot.Tools.ExternalDeveloper.ExternalDeveloperConfigurationDialog.VBox
 			global::Gtk.VBox w1 = this.VBox;
 			w1.Name = "vBox";
-			w1.BorderWidth = ((uint)(2));
+			w1.BorderWidth = ((uint)(6));
 			// Container child vBox.Gtk.Box+BoxChild
-			this.table1 = new global::Gtk.Table (((uint)(3)), ((uint)(2)), false);
-			this.table1.Name = "table1";
-			this.table1.RowSpacing = ((uint)(6));
-			this.table1.ColumnSpacing = ((uint)(6));
-			// Container child table1.Gtk.Table+TableChild
+			this.table = new global::Gtk.Table (((uint)(5)), ((uint)(2)), false);
+			this.table.Name = "table";
+			this.table.RowSpacing = ((uint)(6));
+			this.table.ColumnSpacing = ((uint)(6));
+			this.table.BorderWidth = ((uint)(4));
+			// Container child table.Gtk.Table+TableChild
 			this.developer = global::Gtk.ComboBox.NewText ();
 			this.developer.Name = "developer";
-			this.table1.Add (this.developer);
-			global::Gtk.Table.TableChild w2 = ((global::Gtk.Table.TableChild)(this.table1 [this.developer]));
+			this.table.Add (this.developer);
+			global::Gtk.Table.TableChild w2 = ((global::Gtk.Table.TableChild)(this.table [this.developer]));
 			w2.LeftAttach = ((uint)(1));
 			w2.RightAttach = ((uint)(2));
 			w2.YOptions = ((global::Gtk.AttachOptions)(4));
-			// Container child table1.Gtk.Table+TableChild
+			// Container child table.Gtk.Table+TableChild
 			this.developerLabel = new global::Gtk.Label ();
 			this.developerLabel.Name = "developerLabel";
 			this.developerLabel.Xalign = 1F;
 			this.developerLabel.LabelProp = global::Mono.Unix.Catalog.GetString ("Preferred developer:");
-			this.table1.Add (this.developerLabel);
-			global::Gtk.Table.TableChild w3 = ((global::Gtk.Table.TableChild)(this.table1 [this.developerLabel]));
+			this.table.Add (this.developerLabel);
+			global::Gtk.Table.TableChild w3 = ((global::Gtk.Table.TableChild)(this.table [this.developerLabel]));
 			w3.XOptions = ((global::Gtk.AttachOptions)(4));
 			w3.YOptions = ((global::Gtk.AttachOptions)(4));
-			// Container child table1.Gtk.Table+TableChild
+			// Container child table.Gtk.Table+TableChild
+			this.quality = new global::Gtk.HScale (null);
+			this.quality.CanFocus = true;
+			this.quality.Name = "quality";
+			this.quality.Adjustment.Lower = 50;
+			this.quality.Adjustment.Upper = 100;
+			this.quality.Adjustment.PageIncrement = 10;
+			this.quality.Adjustment.StepIncrement = 1;
+			this.quality.Adjustment.Value = 85;
+			this.quality.DrawValue = true;
+			this.quality.Digits = 0;
+			this.quality.ValuePos = ((global::Gtk.PositionType)(2));
+			this.table.Add (this.quality);
+			global::Gtk.Table.TableChild w4 = ((global::Gtk.Table.TableChild)(this.table [this.quality]));
+			w4.TopAttach = ((uint)(1));
+			w4.BottomAttach = ((uint)(2));
+			w4.LeftAttach = ((uint)(1));
+			w4.RightAttach = ((uint)(2));
+			w4.XOptions = ((global::Gtk.AttachOptions)(4));
+			w4.YOptions = ((global::Gtk.AttachOptions)(4));
+			// Container child table.Gtk.Table+TableChild
+			this.qualityLabel = new global::Gtk.Label ();
+			this.qualityLabel.Name = "qualityLabel";
+			this.qualityLabel.Xalign = 1F;
+			this.qualityLabel.LabelProp = global::Mono.Unix.Catalog.GetString ("JPEG quality:");
+			this.table.Add (this.qualityLabel);
+			global::Gtk.Table.TableChild w5 = ((global::Gtk.Table.TableChild)(this.table [this.qualityLabel]));
+			w5.TopAttach = ((uint)(1));
+			w5.BottomAttach = ((uint)(2));
+			w5.XOptions = ((global::Gtk.AttachOptions)(4));
+			w5.YOptions = ((global::Gtk.AttachOptions)(4));
+			// Container child table.Gtk.Table+TableChild
+			this.versionBehaviour = global::Gtk.ComboBox.NewText ();
+			this.versionBehaviour.AppendText (global::Mono.Unix.Catalog.GetString ("Create a new version"));
+			this.versionBehaviour.AppendText (global::Mono.Unix.Catalog.GetString ("Overwrite the existing one"));
+			this.versionBehaviour.AppendText (global::Mono.Unix.Catalog.GetString ("Always ask"));
+			this.versionBehaviour.Name = "versionBehaviour";
+			this.versionBehaviour.Active = 0;
+			this.table.Add (this.versionBehaviour);
+			global::Gtk.Table.TableChild w6 = ((global::Gtk.Table.TableChild)(this.table [this.versionBehaviour]));
+			w6.TopAttach = ((uint)(2));
+			w6.BottomAttach = ((uint)(3));
+			w6.LeftAttach = ((uint)(1));
+			w6.RightAttach = ((uint)(2));
+			w6.XOptions = ((global::Gtk.AttachOptions)(4));
+			w6.YOptions = ((global::Gtk.AttachOptions)(4));
+			// Container child table.Gtk.Table+TableChild
+			this.versionLabel = new global::Gtk.Label ();
+			this.versionLabel.Name = "versionLabel";
+			this.versionLabel.Xalign = 1F;
+			this.versionLabel.LabelProp = global::Mono.Unix.Catalog.GetString ("When re-editing:");
+			this.table.Add (this.versionLabel);
+			global::Gtk.Table.TableChild w7 = ((global::Gtk.Table.TableChild)(this.table [this.versionLabel]));
+			w7.TopAttach = ((uint)(2));
+			w7.BottomAttach = ((uint)(3));
+			w7.XOptions = ((global::Gtk.AttachOptions)(4));
+			w7.YOptions = ((global::Gtk.AttachOptions)(4));
+			// Container child table.Gtk.Table+TableChild
 			this.warningBox = new global::Gtk.HBox ();
 			this.warningBox.Name = "warningBox";
 			this.warningBox.Spacing = 6;
@@ -56,10 +118,10 @@ namespace FSpot.Tools.ExternalDeveloper
 			this.warningIcon.Name = "warningIcon";
 			this.warningIcon.Pixbuf = global::Stetic.IconLoader.LoadIcon (this, "gtk-dialog-warning", global::Gtk.IconSize.Menu);
 			this.warningBox.Add (this.warningIcon);
-			global::Gtk.Box.BoxChild w4 = ((global::Gtk.Box.BoxChild)(this.warningBox [this.warningIcon]));
-			w4.Position = 0;
-			w4.Expand = false;
-			w4.Fill = false;
+			global::Gtk.Box.BoxChild w8 = ((global::Gtk.Box.BoxChild)(this.warningBox [this.warningIcon]));
+			w8.Position = 0;
+			w8.Expand = false;
+			w8.Fill = false;
 			// Container child warningBox.Gtk.Box+BoxChild
 			this.warning = new global::Gtk.Label ();
 			this.warning.Name = "warning";
@@ -67,26 +129,27 @@ namespace FSpot.Tools.ExternalDeveloper
 			this.warning.LabelProp = global::Mono.Unix.Catalog.GetString ("warning");
 			this.warning.UseMarkup = true;
 			this.warningBox.Add (this.warning);
-			global::Gtk.Box.BoxChild w5 = ((global::Gtk.Box.BoxChild)(this.warningBox [this.warning]));
-			w5.Position = 1;
-			w5.Expand = false;
-			w5.Fill = false;
-			this.table1.Add (this.warningBox);
-			global::Gtk.Table.TableChild w6 = ((global::Gtk.Table.TableChild)(this.table1 [this.warningBox]));
-			w6.TopAttach = ((uint)(2));
-			w6.BottomAttach = ((uint)(3));
-			w6.RightAttach = ((uint)(2));
-			w6.XOptions = ((global::Gtk.AttachOptions)(4));
-			w6.YOptions = ((global::Gtk.AttachOptions)(4));
-			w1.Add (this.table1);
-			global::Gtk.Box.BoxChild w7 = ((global::Gtk.Box.BoxChild)(w1 [this.table1]));
-			w7.Position = 0;
+			global::Gtk.Box.BoxChild w9 = ((global::Gtk.Box.BoxChild)(this.warningBox [this.warning]));
+			w9.Position = 1;
+			w9.Expand = false;
+			w9.Fill = false;
+			this.table.Add (this.warningBox);
+			global::Gtk.Table.TableChild w10 = ((global::Gtk.Table.TableChild)(this.table [this.warningBox]));
+			w10.TopAttach = ((uint)(4));
+			w10.BottomAttach = ((uint)(5));
+			w10.RightAttach = ((uint)(2));
+			w10.XOptions = ((global::Gtk.AttachOptions)(4));
+			w10.YOptions = ((global::Gtk.AttachOptions)(4));
+			w1.Add (this.table);
+			global::Gtk.Box.BoxChild w11 = ((global::Gtk.Box.BoxChild)(w1 [this.table]));
+			w11.Position = 0;
+			w11.Padding = ((uint)(4));
 			// Internal child FSpot.Tools.ExternalDeveloper.ExternalDeveloperConfigurationDialog.ActionArea
-			global::Gtk.HButtonBox w8 = this.ActionArea;
-			w8.Name = "actionArea";
-			w8.Spacing = 10;
-			w8.BorderWidth = ((uint)(5));
-			w8.LayoutStyle = ((global::Gtk.ButtonBoxStyle)(4));
+			global::Gtk.HButtonBox w12 = this.ActionArea;
+			w12.Name = "actionArea";
+			w12.Spacing = 10;
+			w12.BorderWidth = ((uint)(4));
+			w12.LayoutStyle = ((global::Gtk.ButtonBoxStyle)(4));
 			// Container child actionArea.Gtk.ButtonBox+ButtonBoxChild
 			this.buttonCancel = new global::Gtk.Button ();
 			this.buttonCancel.CanDefault = true;
@@ -96,9 +159,9 @@ namespace FSpot.Tools.ExternalDeveloper
 			this.buttonCancel.UseUnderline = true;
 			this.buttonCancel.Label = "gtk-cancel";
 			this.AddActionWidget (this.buttonCancel, -6);
-			global::Gtk.ButtonBox.ButtonBoxChild w9 = ((global::Gtk.ButtonBox.ButtonBoxChild)(w8 [this.buttonCancel]));
-			w9.Expand = false;
-			w9.Fill = false;
+			global::Gtk.ButtonBox.ButtonBoxChild w13 = ((global::Gtk.ButtonBox.ButtonBoxChild)(w12 [this.buttonCancel]));
+			w13.Expand = false;
+			w13.Fill = false;
 			// Container child actionArea.Gtk.ButtonBox+ButtonBoxChild
 			this.buttonOk = new global::Gtk.Button ();
 			this.buttonOk.CanDefault = true;
@@ -108,10 +171,10 @@ namespace FSpot.Tools.ExternalDeveloper
 			this.buttonOk.UseUnderline = true;
 			this.buttonOk.Label = "gtk-ok";
 			this.AddActionWidget (this.buttonOk, -5);
-			global::Gtk.ButtonBox.ButtonBoxChild w10 = ((global::Gtk.ButtonBox.ButtonBoxChild)(w8 [this.buttonOk]));
-			w10.Position = 1;
-			w10.Expand = false;
-			w10.Fill = false;
+			global::Gtk.ButtonBox.ButtonBoxChild w14 = ((global::Gtk.ButtonBox.ButtonBoxChild)(w12 [this.buttonOk]));
+			w14.Position = 1;
+			w14.Expand = false;
+			w14.Fill = false;
 			if ((this.Child != null)) {
 				this.Child.ShowAll ();
 			}
