@@ -5,7 +5,11 @@
     <target-gtk-version>2.12</target-gtk-version>
   </configuration>
   <import>
+    <widget-library name="../../../../../bin/FSpot.Core.dll" />
+    <widget-library name="../../../../../bin/FSpot.Utils.dll" />
+    <widget-library name="../../../../../bin/f-spot.exe" />
     <widget-library name="../../../../../../../.config/f-spot/addins/FSpot.Tools.OpenWithExternalDeveloper.dll" internal="true" />
+    <widget-library name="../../../../../bin/Hyena.Gui.dll" />
   </import>
   <widget class="Gtk.Dialog" id="FSpot.Tools.ExternalDeveloper.ExternalDeveloperConfigurationDialog" design-size="400 300">
     <property name="MemberName" />

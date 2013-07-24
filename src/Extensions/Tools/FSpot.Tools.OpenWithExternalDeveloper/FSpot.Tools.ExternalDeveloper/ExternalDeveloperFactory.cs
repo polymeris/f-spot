@@ -110,13 +110,8 @@ namespace FSpot.Tools.ExternalDeveloper
 					ret = new UFRaw();
 					break;
 				case "Rawstudio":
-<<<<<<< Updated upstream
-					if (Rawstudio.supportedVersionIsInstalled())
-						return new Rawstudio();
-=======
 					if (Rawstudio.SupportedVersionIsInstalled())
 						ret = new Rawstudio();
->>>>>>> Stashed changes
 					else
 						ret = new GenericExternalDeveloper(GetExecutable(name));
 					break;

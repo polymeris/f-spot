@@ -76,7 +76,7 @@ namespace FSpot.Tools.ExternalDeveloper
 			this.Hide();
 		}
 
-		void OnDeveloperChanged(object sender, EventArgs e)
+		void UpdateDialog()
 		{
 
 			if (developer.ActiveText == "Rawstudio" && !Rawstudio.SupportedVersionIsInstalled())
