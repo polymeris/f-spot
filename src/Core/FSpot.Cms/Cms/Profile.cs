@@ -284,7 +284,7 @@ namespace Cms
 		public string Model {
 			get {
 				lock (srgb) {
-					return Marshal.PtrToStringAnsi (NativeMethods.CmsTakeModel (Handle));
+					return "";// Marshal.PtrToStringAnsi (NativeMethods.CmsTakeModel (Handle));
 				}
 			}
 		}
@@ -292,7 +292,7 @@ namespace Cms
 		public string ProductName {
 			get {
 				lock (srgb) {
-					return Marshal.PtrToStringAnsi (NativeMethods.CmsTakeProductName (Handle));
+					return "";// Marshal.PtrToStringAnsi (NativeMethods.CmsTakeProductName (Handle));
 				}
 			}
 		}
@@ -300,7 +300,7 @@ namespace Cms
 		public string ProductDescription {
 			get {
 				lock (srgb) {
-					return Marshal.PtrToStringAnsi (NativeMethods.CmsTakeProductDesc (Handle));
+					return "";//Marshal.PtrToStringAnsi (NativeMethods.CmsTakeProductDesc (Handle));
 				}
 			}
 		}

@@ -37,6 +37,8 @@ namespace FSpot.Tools.ExternalDeveloper
 		public const string PREFERENCES_EXTENSION =
 			Preferences.APP_FSPOT + "extension/openwithexternaldeveloper/";
 		public const string DEVELOPER_KEY = PREFERENCES_EXTENSION + "developer";
+		public const string JPEG_QUALITY_KEY = PREFERENCES_EXTENSION + "jpegquality";
+		public const string VERSION_BEHAVIOUR_KEY = PREFERENCES_EXTENSION + "versionbehaviour";
 
 		public static IEnumerable<string> GetAvaliableDevelopers()
 		{
@@ -45,7 +47,7 @@ namespace FSpot.Tools.ExternalDeveloper
 
 		protected static string[] GetSupportedDevelopers()
 		{
-			string[] supported = { "UFRaw", "Rawstudio" };
+			string[] supported = { "UFRaw", "Rawstudio", "Darktable" };
 			return supported;
 		}
 
@@ -57,6 +59,21 @@ namespace FSpot.Tools.ExternalDeveloper
 		public static void SetPreferredDeveloper(string name)
 		{
 			Preferences.Set(ExternalDeveloperFactory.DEVELOPER_KEY, name);
+		}
+
+		public static string GetPreferredDeveloper()
+		{
+			return Preferences.Get<string>(ExternalDeveloperFactory.DEVELOPER_KEY);
+		}
+
+		public static void SetJpegQuality(int q)
+		{
+			Preferences.Set(ExternalDeveloperFactory.JPEG_QUALITY_KEY, q);
+		}
+
+		public static int GetJpegQuality()
+		{
+			return Preferences.Get<int>(ExternalDeveloperFactory.JPEG_QUALITY_KEY);
 		}
 
 		public static AppInfo GetAppInfo(string name)
@@ -77,19 +94,31 @@ namespace FSpot.Tools.ExternalDeveloper
 
 		public static AbstractExternalDeveloper Get()
 		{
+			AbstractExternalDeveloper ret;
 			string name = Preferences.Get<string>(DEVELOPER_KEY);
 			switch (name)
 			{
 				case "UFRaw":
-					return new UFRaw();
+					ret = new UFRaw();
+					break;
 				case "Rawstudio":
+<<<<<<< Updated upstream
 					if (Rawstudio.supportedVersionIsInstalled())
 						return new Rawstudio();
+=======
+					if (Rawstudio.SupportedVersionIsInstalled())
+						ret = new Rawstudio();
+>>>>>>> Stashed changes
 					else
-						return new GenericExternalDeveloper(GetExecutable(name));
+						ret = new GenericExternalDeveloper(GetExecutable(name));
+					break;
 				default:
-					return new GenericExternalDeveloper(GetExecutable(name));
+					ret = new GenericExternalDeveloper(GetExecutable(name));
+					break;
 			}
+
+			ret.JpegQuality = Preferences.Get<int>(JPEG_QUALITY_KEY);
+			return ret;
 		}
 	}
 	

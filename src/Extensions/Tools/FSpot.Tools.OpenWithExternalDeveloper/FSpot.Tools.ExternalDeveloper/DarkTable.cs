@@ -1,4 +1,4 @@
-//  Rawstudio.cs
+//  DarkTable.cs
 //
 //  Author:
 //       Camilo Polymeris <cpolymeris@gmail.com>
@@ -32,39 +32,28 @@ using Hyena;
 namespace FSpot.Tools.ExternalDeveloper
 {
 
-	public class Rawstudio : AbstractExternalDeveloper
+	public class DarkTable : AbstractExternalDeveloper
 	{
-
-		private static bool? supported = null;
-
 		protected override void CallExternalDeveloper (Development d)
 		{
-			string executable = "rawstudio";
-			string args = String.Format ("--output='{1}' '{0}'",
-			                             d.RawUri.LocalPath, d.DevelopedUri.LocalPath);
+			string executable = "darktable";
+			string args = String.Format ("-d memory '{0}'", d.RawUri.LocalPath);
 			d.StartWatching ();
-			Log.Information (String.Format ("Calling Rawstudio: {0} {1}", executable, args));
-			System.Diagnostics.Process rs = System.Diagnostics.Process.Start (executable, args);
-			rs.Exited += (sender, e) => d.StopWatching();
+			Log.Information (String.Format ("Calling UFRaw: {0} {1}", executable, args));
+			System.Diagnostics.Process dt = System.Diagnostics.Process.Start (executable, args);
+			dt.Exited += (sender, o) => DoDevelop(d);
 		}
 
-		public static bool supportedVersionIsInstalled()
+
+		void DoDevelop(Development d)
 		{
-			if (supported != null)
-				return (bool)supported;
-			// TODO: if my patch doesn't get accepted by version 2.1, this has to be rewritten
-			string executable = "rawstudio";
-			string args = "--version";
-			System.Diagnostics.Process rs = System.Diagnostics.Process.Start (executable, args);
-			if (!rs.WaitForExit(2000)) //< that should be more than enough time, I hope
-			{
-				rs.Kill();
-				supported = false;
-			}
-			else
-				supported = rs.ExitCode == 0;
-			return (bool)supported;
+			// After user edits...
+			// ...actually generate, JPEG using darktable-cli. Make sure sidecar is present!
+			string executable = "darktable-cli";
+			string args = String.Format ("'{0}' '{1}'",
+			                             d.RawUri.LocalPath, d.DevelopedUri.LocalPath);
+			System.Diagnostics.Process dt_cli = System.Diagnostics.Process.Start (executable, args);
+			dt_cli.Exited += (sender, e) => d.StopWatching();
 		}
 	}
-
 }

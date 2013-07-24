@@ -38,7 +38,7 @@ using System;
 using System.IO;
 using FSpot.Imaging;
 using Hyena;
-using Mono.Posix;
+using Mono.Unix;
 
 namespace FSpot.Tools.ExternalDeveloper
 {
@@ -95,7 +95,11 @@ namespace FSpot.Tools.ExternalDeveloper
 					uri));
 
 				if (created)
-					photo.AddVersion(uri.GetBaseUri(), uri.GetFilename(), version, true);
+				{
+					string path = SafeUri.FilenameToUri(Path.GetDirectoryName(uri.AbsolutePath));
+					string filename = Path.GetFileName(uri.AbsolutePath);
+					photo.AddVersion(new SafeUri(path), filename, version, true);
+				}
 				photo.Changes.DataChanged = true;
 				App.Instance.Database.Photos.Commit(photo);
 			}
@@ -173,8 +177,10 @@ namespace FSpot.Tools.ExternalDeveloper
 		
 		protected static string DirectoryPath(Photo p)
 		{
-			return p.VersionUri(Photo.OriginalVersionId).GetBaseUri();
+				return Path.GetDirectoryName(p.VersionUri(Photo.OriginalVersionId));
 		}
+
+		public int JpegQuality { get; set; }
 	}	
 }
 

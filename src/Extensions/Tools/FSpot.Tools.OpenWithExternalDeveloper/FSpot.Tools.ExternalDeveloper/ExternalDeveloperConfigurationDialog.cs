@@ -26,6 +26,7 @@
 //
 //
 using System;
+using Gtk;
 
 namespace FSpot.Tools.ExternalDeveloper
 {
@@ -41,42 +42,65 @@ namespace FSpot.Tools.ExternalDeveloper
 					developer.AppendText(name);
 			}
 
-			developer.Active = 0;
+			TreeIter it;
+			developer.Model.GetIterFirst(out it);
+			do
+			{
+				string s = (string)developer.Model.GetValue(it, 0);
+				if (s == ExternalDeveloperFactory.GetPreferredDeveloper())
+				{
+					developer.SetActiveIter(it);
+					break;
+				}
+			} while (developer.Model.IterNext(ref it));
 
-			developer.Changed += OnDeveloperChanged;
+			quality.Value = ExternalDeveloperFactory.GetJpegQuality();
+			UpdateDialog();
+			developer.Changed += (sender, e) => UpdateDialog();
 			buttonOk.Clicked += OnOkClicked;
-			buttonCancel.Clicked += OnCancelClicked;
+			buttonCancel.Clicked += (sender, e) => Hide();
 		}
 
 		protected void OnOkClicked(object sender, EventArgs e)
 		{
 			ExternalDeveloperFactory.SetPreferredDeveloper(developer.ActiveText);
+			ExternalDeveloperFactory.SetJpegQuality((int)quality.Value);
 			this.Hide();
 		}
 
-		protected void OnCancelClicked(object sender, EventArgs e)
+		void UpdateDialog()
 		{
-			this.Hide();
-		}
-
-		void OnDeveloperChanged(object sender, EventArgs e)
-		{
+<<<<<<< Updated upstream
 			if (developer.ActiveText == "Rawstudio" && Rawstudio.supportedVersionIsInstalled())
+=======
+			if (developer.ActiveText == "Rawstudio" && !Rawstudio.SupportedVersionIsInstalled())
+>>>>>>> Stashed changes
 			{
 				warning.LabelProp = String.Format(
 					"Only Rawstudio versions 2.1 and up are supported by this extension.",
 					developer.ActiveText);
+				versionBehaviour.Sensitive = false;
 				warningBox.Show();
 			}
 			else if (ExternalDeveloperFactory.IsSupported(developer.ActiveText))
+			{
+				versionBehaviour.Sensitive = true;
 				warningBox.Hide();
+			}
 			else
 			{
 				warning.LabelProp = String.Format(
 					"The program <i>{0}</i> is not supported by this extension.",
 					developer.ActiveText);
+				versionBehaviour.Sensitive = false;
 				warningBox.Show();
 			}
+<<<<<<< Updated upstream
+=======
+			
+			quality.Sensitive =
+				ExternalDeveloperFactory.CanSetJpegQualityForDeveloper(developer.ActiveText);
+>>>>>>> Stashed changes
 		}
 	}
 }
