@@ -45,6 +45,7 @@ namespace FSpot.Tools.ExternalDeveloper
 			d.StartWatching ();
 			Log.Information (String.Format ("Calling Rawstudio: {0} {1}", executable, args));
 			System.Diagnostics.Process rs = System.Diagnostics.Process.Start (executable, args);
+			rs.EnableRaisingEvents = true;
 			rs.Exited += (sender, e) => d.StopWatching();
 		}
 

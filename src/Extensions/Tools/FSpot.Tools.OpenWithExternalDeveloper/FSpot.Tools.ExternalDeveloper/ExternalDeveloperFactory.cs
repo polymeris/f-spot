@@ -115,6 +115,9 @@ namespace FSpot.Tools.ExternalDeveloper
 					else
 						ret = new GenericExternalDeveloper(GetExecutable(name));
 					break;
+				case "Darktable":
+					ret = new DarkTable();
+					break;
 				default:
 					ret = new GenericExternalDeveloper(GetExecutable(name));
 					break;

@@ -120,7 +120,7 @@ namespace FSpot.Tools.ExternalDeveloper
 				}
 			}
 
-			public System.Uri DevelopedUri
+			public Hyena.SafeUri DevelopedUri
 			{
 				get
 				{
@@ -131,7 +131,7 @@ namespace FSpot.Tools.ExternalDeveloper
 			public  int JpegQuality { get; set; }
 			private Photo photo;
 			private string version; //< Name of the version of this photo the dev is assigned to
-			private System.Uri developed; //< Path of output jpeg
+			private Hyena.SafeUri developed; //< Path of output jpeg
 			private FileSystemWatcher watcher;
 		}
 
@@ -169,11 +169,13 @@ namespace FSpot.Tools.ExternalDeveloper
 			return name;
 		}
 		
-		protected static System.Uri GetUriForVersionName(Photo p, string version_name)
+		protected static Hyena.SafeUri GetUriForVersionName(Photo p, string version_name)
 		{
 			string name_without_ext = System.IO.Path.GetFileNameWithoutExtension(p.Name);
-			return new System.Uri(System.IO.Path.Combine(DirectoryPath(p), name_without_ext
-				+ " (" + version_name + ")" + ".jpg"));
+			string uri = System.IO.Path.Combine(DirectoryPath(p), name_without_ext
+			                                    + " (" + version_name + ")" + ".jpg");
+			uri = uri.Replace("file:/", "/"); //not sure why this is needed.
+			return new Hyena.SafeUri(uri);
 		}
 		
 		protected static string DirectoryPath(Photo p)

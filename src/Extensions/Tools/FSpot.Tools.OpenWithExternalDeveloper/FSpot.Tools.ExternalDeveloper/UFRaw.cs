@@ -42,7 +42,8 @@ namespace FSpot.Tools.ExternalDeveloper
 			d.StartWatching ();
 			Log.Information (String.Format ("Calling UFRaw: {0} {1}", executable, args));
 			System.Diagnostics.Process ufraw = System.Diagnostics.Process.Start (executable, args);
-			ufraw.Exited += new EventHandler((sender, e) => d.StopWatching());
+			ufraw.EnableRaisingEvents = true;
+			ufraw.Exited += (sender, e) => d.StopWatching();
 		}
 	}
 }

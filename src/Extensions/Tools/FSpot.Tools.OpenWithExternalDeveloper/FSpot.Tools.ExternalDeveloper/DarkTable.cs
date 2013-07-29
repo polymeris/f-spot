@@ -39,8 +39,9 @@ namespace FSpot.Tools.ExternalDeveloper
 			string executable = "darktable";
 			string args = String.Format ("-d memory '{0}'", d.RawUri.LocalPath);
 			d.StartWatching ();
-			Log.Information (String.Format ("Calling UFRaw: {0} {1}", executable, args));
+			Log.Information (String.Format ("Calling Darktable: {0} {1}", executable, args));
 			System.Diagnostics.Process dt = System.Diagnostics.Process.Start (executable, args);
+			dt.EnableRaisingEvents = true;
 			dt.Exited += (sender, o) => DoDevelop(d);
 		}
 

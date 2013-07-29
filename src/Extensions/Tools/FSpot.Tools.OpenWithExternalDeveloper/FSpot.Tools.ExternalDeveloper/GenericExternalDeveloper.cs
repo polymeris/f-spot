@@ -40,8 +40,9 @@ namespace FSpot.Tools.ExternalDeveloper
 		protected override void CallExternalDeveloper(Development d)
 		{
 			d.StartWatching();
-			Hyena.Log.Information(String.Format("Calling {0}", executable));
+			Hyena.Log.Information(String.Format("Calling generic raw developer {0}", executable));
 			System.Diagnostics.Process ufraw = System.Diagnostics.Process.Start(executable);
+			ufraw.EnableRaisingEvents = true;
 			ufraw.Exited += new EventHandler((sender, e) => d.StopWatching());
 		}
 
